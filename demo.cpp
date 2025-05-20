@@ -66,29 +66,55 @@ using namespace std; // for not using std:: prefix
     // 60-79 - B
     // 80-100 - A
     // Ask user to enter marks and print the grade
+
+// int main() {
+//     int marks;
+//     cin >> marks;
+//     if(marks<=25){
+//         cout << "Grade F";
+//     }
+//     else if(marks >= 25 && marks <= 44){ // && or "and" for multiple conditions
+//         cout << "Grade E"; 
+//     }
+//     else if(marks <= 49){
+//         cout << "Grade D";
+//     }
+//     else if(marks <= 59){
+//         cout << "Grade C";
+//     }
+//     else if(marks <= 79){
+//         cout << "Grade B";
+//     }
+//     else if(marks <= 100){
+//         cout << "Grade A";
+//     }
+//     else{
+//         cout << "Invalid Marks!";
+//     }
+//     return 0;
+// }
+
+// nested if else statement
 int main() {
-    int marks;
-    cin >> marks;
-    if(marks<=25){
-        cout << "Grade F";
+    // PROBLEM 3: age for job and retirement 
+    // if age is less than 18, print "You are not eligible for job"
+    // if age is between 18 and 60, print "You are eligible for job"
+    // if age is <55 and >60, print "You are not eligible for job , but retirement soon"
+    // if age is greater than 60, print "retirement time"
+    int age;
+    cin >> age;
+    if(age < 18){
+        cout << "You are not eligible for job";
     }
-    else if(marks >= 25 && marks <= 44){
-        cout << "Grade E";
+    else if(age <= 57){
+        cout << "You are eligible for job";
+        if(age >= 55){
+            cout << ", but retirement soon";
+        }
     }
-    else if(marks <= 49){
-        cout << "Grade D";
+    else {
+        cout << "retirement time";
     }
-    else if(marks <= 59){
-        cout << "Grade C";
-    }
-    else if(marks <= 79){
-        cout << "Grade B";
-    }
-    else if(marks <= 100){
-        cout << "Grade A";
-    }
-    else{
-        cout << "Invalid Marks!";
-    }
+    
     return 0;
 }
