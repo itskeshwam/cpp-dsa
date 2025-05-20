@@ -95,26 +95,68 @@ using namespace std; // for not using std:: prefix
 // }
 
 // nested if else statement
-int main() {
-    // PROBLEM 3: age for job and retirement 
-    // if age is less than 18, print "You are not eligible for job"
-    // if age is between 18 and 60, print "You are eligible for job"
-    // if age is <55 and >60, print "You are not eligible for job , but retirement soon"
-    // if age is greater than 60, print "retirement time"
-    int age;
-    cin >> age;
-    if(age < 18){
-        cout << "You are not eligible for job";
-    }
-    else if(age <= 57){
-        cout << "You are eligible for job";
-        if(age >= 55){
-            cout << ", but retirement soon";
-        }
-    }
-    else {
-        cout << "retirement time";
-    }
+// int main() {
+//     // PROBLEM 3: age for job and retirement 
+//     // if age is less than 18, print "You are not eligible for job"
+//     // if age is between 18 and 60, print "You are eligible for job"
+//     // if age is <55 and >60, print "You are not eligible for job , but retirement soon"
+//     // if age is greater than 60, print "retirement time"
+//     int age;
+//     cin >> age;
+//     if(age < 18){
+//         cout << "You are not eligible for job";
+//     }
+//     else if(age <= 57){
+//         cout << "You are eligible for job";
+//         if(age >= 55){
+//             cout << ", but retirement soon";
+//         }
+//     }
+//     else {
+//         cout << "retirement time";
+//     }
     
+//     return 0;
+// }
+
+// Switch case statement
+// PROBLEM : Day of the week
+// 1 - Monday
+// 2 - Tuesday
+// 3 - Wednesday
+// 4 - Thursday
+// 5 - Friday
+// 6 - Saturday
+// 7 - Sunday
+
+int main(){
+    int day;
+    cin >> day;
+    switch(day){
+        case 1:
+            cout << "Monday";
+            break; //VERY IMPORTANT
+        case 2:
+            cout << "Tuesday";
+            break; 
+        case 3:
+            cout << "Wednesday";
+            break;
+        case 4:
+            cout << "Thursday";
+            break;
+        case 5:
+            cout << "Friday";
+            break;
+        case 6:
+            cout << "Saturday";
+            break;
+        case 7:
+            cout << "Sunday";
+            break;
+        default:
+            cout << "Invalid day";
+            break;
+    }
     return 0;
 }
