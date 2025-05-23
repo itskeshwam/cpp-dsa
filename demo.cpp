@@ -67,7 +67,7 @@ using namespace std; // for not using std:: prefix
     // 80-100 - A
     // Ask user to enter marks and print the grade
 
-// int main() {
+// int loops() {
 //     int marks;
 //     cin >> marks;
 //     if(marks<=25){
@@ -95,7 +95,7 @@ using namespace std; // for not using std:: prefix
 // }
 
 // nested if else statement
-// int main() {
+// int nested_loops() {
 //     // PROBLEM 3: age for job and retirement 
 //     // if age is less than 18, print "You are not eligible for job"
 //     // if age is between 18 and 60, print "You are eligible for job"
@@ -129,7 +129,7 @@ using namespace std; // for not using std:: prefix
 // 6 - Saturday
 // 7 - Sunday
 
-// int main(){
+// int swtich(){
 //     int day;
 //     cin >> day;
 //     switch(day){
@@ -163,8 +163,59 @@ using namespace std; // for not using std:: prefix
 
 
 // Arrays and Strings
-int main(){
-    
+// int array(){
+//     // 1D array example
+//     int arr[4];
+//     cin >> arr[0] >> arr[1] >> arr[2] >> arr[3]; 
+//     cout << arr[3] << endl;
+//     arr[2] += 10;
+//     cout << arr[2] << endl;
+//     arr[1] = 16;
+//     cout << arr[1] << endl;
 
+//     // 2D array example
+//     int arr2[3][4]; // 3 rows (left to right) and 4 columns (up to down)
+//     arr2 [0][0] = 1;
+//     arr2 [0][1] = 2;
+//     arr2 [0][2] = 3;
+//     arr2 [0][3] = 4;
+//     arr2 [1][0] = 5;
+//     arr2 [1][1] = 6;
+//     arr2 [1][2] = 7;
+//     arr2 [1][3] = 8;
+//     arr2 [2][0] = 9;
+//     arr2 [2][1] = 10;
+//     arr2 [2][2] = 11;
+//     arr2 [2][3] = 12;
+//     cout << arr2[2][3] << endl;
+
+//     return 0;
+// }
+
+// int main(){
+//     string s = "Hello My Brother";
+//     int len = s.size(); // or s.length()
+//     cout << s[len - 1]; // prints 'r' last element of string
+// }
+
+
+
+// for loop
+// int main(){
+//     for(int i = 1; i <=100; i=i+1){
+//         cout << "brother" << endl;
+//     }
+// }
+
+
+//nested for loop
+int main(){
+    for(int i=1; i<=25 ;i++)
+    {
+        for (j=1; j<=25;j++)
+        {
+            cout<< i << " " << j << endl;
+        }
+    }
     return 0;
-}
+    }
