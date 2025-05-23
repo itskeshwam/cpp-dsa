@@ -209,13 +209,95 @@ using namespace std; // for not using std:: prefix
 
 
 //nested for loop
+// int main(){
+//     for(int i = 1; i <= 5; i++){
+//         for(int j = 1; j <= 5; j++){
+//             cout << i << " " << j << endl;
+//         }
+// }
+// }
+
+
+// while loop 
+// int main(){
+//     int i = 0;
+//     while (i>=0 && i<=100){ // first initailize, the condition and then increment unlike for loop where we initialize, condition and increment in one line
+//         cout << i << endl;
+//         i++;
+//     }
+
+//     return 0;
+// }
+
+
+// do while loop
+// int main(){
+//     int i = 2;
+//     do { // do while loop is used when you want to execute the loop AT LEAST once even if the condition is false
+//         cout << i << endl;
+//         i++;
+//     } while (i<1);
+//     return 0;
+// } 
+
+
+// Functions
+// void - does not return anything
+// return type - returns a value; int, float, char, string 
+// parameterized function - takes input
+// non parameterized function - does not take input
+
+// void printName(){
+//     cout << "Hello Keshwam!!";
+// }
+
+// int main(){
+//     printName();
+//     return 0;
+// }
+
+// parameterized void function
+
+// void printName(string name){
+//     cout << "Hello " << name;
+// }
+
+// int main(){
+//     string name;
+//     cin >> name;
+//     printName(name);
+//     return 0;
+// }
+
+// pass by value
+// void passByValue(int x){
+//     x+=10;
+//     cout << x << endl;
+//     x+=10;
+//     cout << x << endl;
+// }
+
+// int main(){
+//     int x = 10;
+//     cout << x << endl;
+//     passByValue(x); // pass by value means that the value of x is passed to the function and not the address of x so the value of x in main function will not change
+//     cout << x << endl; // value of x will not change in main function
+//     return 0;
+// }
+
+// pass by reference
+// makes changes in the original variable unlike pass by value
+void passByValue(int &x){ // adding & makes it pass by reference 
+    x+=10; 
+    cout << x << endl;
+    x+=10;
+    cout << x << endl;
+}
+
 int main(){
-    for(int i=1; i<=25 ;i++)
-    {
-        for (j=1; j<=25;j++)
-        {
-            cout<< i << " " << j << endl;
-        }
-    }
+    int x = 10;
+    cout << x << endl;
+    passByValue(x); // pass by value means that the value of x is passed to the function and not the address of x so the value of x in main function will not change
+    cout << x << endl; // value of x will not change in main function
     return 0;
-    }
+}
