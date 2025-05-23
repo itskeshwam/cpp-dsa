@@ -129,34 +129,42 @@ using namespace std; // for not using std:: prefix
 // 6 - Saturday
 // 7 - Sunday
 
+// int main(){
+//     int day;
+//     cin >> day;
+//     switch(day){
+//         case 1:
+//             cout << "Monday";
+//             break; //VERY IMPORTANT
+//         case 2:
+//             cout << "Tuesday";
+//             break; 
+//         case 3:
+//             cout << "Wednesday";
+//             break;
+//         case 4:
+//             cout << "Thursday";
+//             break;
+//         case 5:
+//             cout << "Friday";
+//             break;
+//         case 6:
+//             cout << "Saturday";
+//             break;
+//         case 7:
+//             cout << "Sunday";
+//             break;
+//         default:
+//             cout << "Invalid day";
+//             break;
+//     }
+//     return 0;
+// }
+
+
+// Arrays and Strings
 int main(){
-    int day;
-    cin >> day;
-    switch(day){
-        case 1:
-            cout << "Monday";
-            break; //VERY IMPORTANT
-        case 2:
-            cout << "Tuesday";
-            break; 
-        case 3:
-            cout << "Wednesday";
-            break;
-        case 4:
-            cout << "Thursday";
-            break;
-        case 5:
-            cout << "Friday";
-            break;
-        case 6:
-            cout << "Saturday";
-            break;
-        case 7:
-            cout << "Sunday";
-            break;
-        default:
-            cout << "Invalid day";
-            break;
-    }
+    
+
     return 0;
 }
