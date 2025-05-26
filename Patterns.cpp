@@ -26,13 +26,36 @@ using namespace std;
 // } 
 
 // 1/12/123/1234/12345 pattern in left triangle 
+// int main(){
+//     int n;
+//     cin >> n;
+//     for (int i=1; i<=n; i++){
+//         for (int j=1; j<=i; j++){
+//             cout << j;
+//         } cout << endl;
+//     }
+// }
+
+
+// inverted left triangle 
+// int main(){
+//     int n;
+//     cin >> n;
+//     for (int i=1; i<=n; i++){
+//         for (int j=i; j<=n; j++){
+//             cout << "*";
+//         } cout << endl;
+//     }
+// }
+
+
+// inverted left triangle with numbers 
 int main(){
     int n;
     cin >> n;
     for (int i=1; i<=n; i++){
-        for (int j=1; j<=i; j++){
+        for (int j=1; j<=n-i+1; j++){
             cout << j;
         } cout << endl;
     }
-
 }
