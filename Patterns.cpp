@@ -83,24 +83,75 @@ using namespace std;
 // }
 
 // inverted star pyramid
-int main(){
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++){
+// int main(){
+//     int n;
+//     cin >> n;
+//     for (int i = 0; i < n; i++){
         
-        //space 
-        for (int j =0; j<i; j++){
+//         //space 
+//         for (int j =0; j<i; j++){
+//             cout <<" ";
+//         }
+
+//         //stars 
+//         for(int j=0;j< 2*n -(2*i +1);j++){    
+//             cout<<"*";
+//         }
+        
+//         // spaces
+//         for (int j =0; j<i; j++){
+//             cout <<" ";}
+//         cout << endl;
+//     }
+// }
+
+// diamond pattern
+// combine both pyramid?
+
+void erect_pyramid(int N)
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j =0; j<N-i-1; j++)
+        {
             cout <<" ";
         }
-
-        //stars 
-        for(int j=0;j< 2*n -(2*i +1);j++){    
+        for(int j=0;j< 2*i+1;j++){
+            
             cout<<"*";
         }
-        
-        // spaces
-        for (int j =0; j<i; j++){
-            cout <<" ";}
+        for (int j =0; j<N-i-1; j++)
+        {
+            cout <<" ";
+        }
         cout << endl;
     }
+}
+
+void inverted_pyramid(int N)
+{
+    for (int i = 0; i < N; i++)
+    {
+        for (int j =0; j<i; j++)
+        {
+            cout <<" ";
+        }
+        for(int j=0;j< 2*N -(2*i +1);j++){
+            
+            cout<<"*";
+        }
+        for (int j =0; j<i; j++)
+        {
+            cout <<" ";
+        }cout << endl;
+    }
+}
+
+int main()
+{   
+    int N = 5;
+    erect_pyramid(N);
+    inverted_pyramid(N);
+
+    return 0;
 }
