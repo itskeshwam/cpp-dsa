@@ -204,16 +204,41 @@ using namespace std;
 // }
 
 
-// increasing letter triangle
+// Alpha-Ramp Pattern
+// int main(){
+//     int n;
+//     cin >> n;
+//     char x = 'A';
+//     for (int i=1; i<=n; i++){
+//         for (int j=1;j<=i;j++){
+//             cout << x << " ";
+//         }cout << endl;
+//         x+=1;
+//     }
+// } 
+
+// increasing letter pattern
+// int main(){
+//     int n;
+//     cin >> n;
+//     char x = 'A';
+//     for (int i=1; i<=n; i++){
+//         for (int j=1;j<=i;j++){
+//             cout << x << " ";
+//             x+=1;
+//         }cout << endl;
+//     }
+// } 
+
+// decreasing letter pattern
 int main(){
     int n;
     cin >> n;
     char x = 'A';
     for (int i=1; i<=n; i++){
-        for (int j=1;j<=i;j++){
+        for (int j=n;j>=i;j--){
             cout << x << " ";
+            x+=1;
         }cout << endl;
-                    x+=1;
     }
-    
 } 
