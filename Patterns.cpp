@@ -166,26 +166,54 @@ using namespace std;
 // }
 
 // number crown
+// int main(){
+//     int n;
+//     cin >> n;
+//     int spaces = 2*n-1;;
+//     for(int i=1; i<=n;i++){
+//         // number
+//         for (int j=1; j<=i; j++){
+//             cout << j;
+//         }
+
+//         // spaces
+//         for (int j=1; j<=spaces;j++){
+//             cout << " ";
+//         }
+
+//         // numbers
+//         for (int j=i; j>=1; j--){
+//             cout << j;
+//         }
+//         cout << endl;
+//         spaces-=2;
+//     }
+// }
+
+// increasing number triangle
+// int main(){
+//     int n;
+//     cin >> n;
+//     int x = 1;
+//     for (int i=1; i<=n; i++){
+//         for (int j=1;j<=i;j++){
+//             cout << x << " ";
+//             x+=1;
+//         }cout << endl;
+//     }
+// }
+
+
+// increasing letter triangle
 int main(){
     int n;
     cin >> n;
-    int spaces = 2*n-1;;
-    for(int i=1; i<=n;i++){
-        // number
-        for (int j=1; j<=i; j++){
-            cout << j;
-        }
-
-        // spaces
-        for (int j=1; j<=spaces;j++){
-            cout << " ";
-        }
-
-        // numbers
-        for (int j=i; j>=1; j--){
-            cout << j;
-        }
-        cout << endl;
-        spaces-=2;
+    char x = 'A';
+    for (int i=1; i<=n; i++){
+        for (int j=1;j<=i;j++){
+            cout << x << " ";
+        }cout << endl;
+                    x+=1;
     }
-}
+    
+} 
