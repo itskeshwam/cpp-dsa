@@ -1,5 +1,1 @@
-    A    
-   ABA   
-  ABCDC  
- ABCDEFE 
-ABCDEFGHG
+raj6
