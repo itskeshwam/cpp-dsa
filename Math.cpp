@@ -126,20 +126,41 @@ using namespace std;
 
 
 // prime number
+// int main(){
+//     int n;
+//     cin >> n;
+//     int cnt = 0;
+//     for (int i = 1; i <= sqrt(n); i++) {
+//         if (n % i == 0) {
+//             cnt++;
+//             if (i != n / i) { // Check to avoid counting the square root twice
+//                 cnt++;
+//             }
+//         }
+//     }if (cnt == 2) {
+//         cout << n << " is a prime number";
+//     } else {
+//         cout << n << " is not a prime number";
+//     }
+// }
+
+
+
+// GCD and HCF
 int main(){
-    int n;
-    cin >> n;
-    int cnt = 0;
-    for (int i = 1; i <= sqrt(n); i++) {
-        if (n % i == 0) {
-            cnt++;
-            if (i != n / i) { // Check to avoid counting the square root twice
-                cnt++;
-            }
+    int a, b;
+    cin >> a >> b;
+    while (a > 0 && b > 0) {
+        if (a > b) {
+            a = a % b;
+        } else {
+            b = b % a;
         }
-    }if (cnt == 2) {
-        cout << n << " is a prime number";
-    } else {
-        cout << n << " is not a prime number";
     }
+    if (a == 0) {
+        cout << b << endl;
+    } else {
+        cout << a << endl;
+    }
+    return 0;
 }
