@@ -1,1 +1,1 @@
-10880 Is Not a Palindrome
+13 is a prime number
