@@ -1,5 +1,1 @@
-Enter your name: keshwam
-keshwam
-keshwam
-keshwam
-keshwam
+5 4 3 2 1 
