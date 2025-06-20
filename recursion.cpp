@@ -66,14 +66,39 @@ using namespace std;
 
 
 // print linearly from n to 1 using backtracking (without using i-1)
-void RevNum(int i, int n){
-    if (i > n) 
-        return;
-    RevNum(i + 1, n);
-    cout << i << " ";
-}
-int main(){
-    int n;
-    cin >> n;
-    RevNum(1, n);
-}
+// void RevNum(int i, int n){
+//     if (i > n) 
+//         return;
+//     RevNum(i + 1, n);
+//     cout << i << " ";
+// }
+// int main(){
+//     int n;
+//     cin >> n;
+//     RevNum(1, n);
+// }
+
+
+
+// sum of n numbers 
+// functional 
+// int sum(int n){
+//     if (n==0) return 0;
+//     return n + sum (n-1);
+// }
+// int main(){
+//     int n; 
+//     cin >> n;
+//     cout << sum(n);
+// }
+
+// factorial of n 
+// int fact(int n){
+//     if (n == 1) return 1;
+//     return n * fact(n-1);
+// }
+// int main(){
+//     int n;
+//     cin >> n;
+//     cout << fact(n);
+// }
