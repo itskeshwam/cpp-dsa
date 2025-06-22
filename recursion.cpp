@@ -106,20 +106,35 @@ using namespace std;
 
 
 // reverse an array using 2 pointers or 2 variables
-void reverse(int arr[], int i, int n){
-    if (i >= n / 2) return;
-    swap(arr[i], arr[n - i - 1]);
-    reverse(arr, i + 1, n);
+// void reverse(int arr[], int i, int n){
+//     if (i >= n / 2) return;
+//     swap(arr[i], arr[n - i - 1]);
+//     reverse(arr, i + 1, n);
+// }
+// int main(){
+//     int n;
+//     cin >> n;
+//     int arr[n];
+
+//     for (int i = 0; i < n; i++) cin >> arr[i];
+//     reverse(arr, 0, n);
+//     for (int i = 0; i < n; i++) cout << arr[i] << " ";
+// }
+
+
+// check palindrome using recursion
+bool palindrome(string s, int i, int n){
+    if (i >= n / 2) return true;
+    if (s[i] == s[n - i - 1])
+        return palindrome(s, i + 1, n);
+    return false;
 }
 int main(){
-    int n;
-    cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
-    reverse(arr, 0, n);
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
-    }
+    string s;
+    cin >> s;
+    int n = s.length();
+    if (palindrome(s, 0, n)) 
+        cout << "is palindrome";
+    else 
+        cout << "is not palindrome";
 }
