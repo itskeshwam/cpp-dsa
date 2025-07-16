@@ -29,23 +29,56 @@ using namespace std;
 
 
 // number of occurrences of each character in a string
-int main() {
-    string s;
-    cin >> s;
+// int main() {
+//     string s;
+//     cin >> s;
 
-    //precompute
-    // using ASCII values, 256 is enough for all characters
-    int hash[256] = {0};
-    for (int i = 0; i < s.size(); i++) {
-        hash[s[i] - 'a']++;
+//     //precompute
+//     // using ASCII values, 256 is enough for all characters
+//     int hash[256] = {0};
+//     for (int i = 0; i < s.size(); i++) {
+//         hash[s[i]]++;
+//     }
+//     int q;
+//     cin >> q;
+//     while (q--) {
+//         char c;
+//         cin >> c;
+//         //fetch
+//         cout << hash[c] << endl;
+//     }
+//     return 0;
+// }
+
+// using unordered_map for character frequency
+// unordered map is nothing but key-value pair type and also is hash table
+int main() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
     }
+
+    // precompute
+    map<int, int> mpp;
+    for (int i = 0; i < n; i++) {
+        mpp[arr[i]]++;
+    }
+
+    // iterate through the map
+    for (auto it : mpp) {
+        cout << it.first << "->" << it.second << endl; // key and value
+    }
+
+
     int q;
     cin >> q;
     while (q--) {
-        char c;
-        cin >> c;
+        int number;
+        cin >> number;
         //fetch
-        cout << hash[c-'a'] << endl;
+        cout << mpp[number] << endl;   
     }
-    return 0;
+    return 0; 
 }
