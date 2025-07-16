@@ -52,18 +52,47 @@ using namespace std;
 
 // using unordered_map for character frequency
 // unordered map is nothing but key-value pair type and also is hash table
+// int main() {
+//     int n;
+//     cin >> n;
+//     int arr[n];
+//     for (int i = 0; i < n; i++) {
+//         cin >> arr[i];
+//     }
+
+//     // precompute
+//     map<int, int> mpp;
+//     for (int i = 0; i < n; i++) {
+//         mpp[arr[i]]++;
+//     }
+
+//     // iterate through the map
+//     for (auto it : mpp) {
+//         cout << it.first << "->" << it.second << endl; // key and value
+//     }
+
+
+//     int q;
+//     cin >> q;
+//     while (q--) {
+//         int number;
+//         cin >> number;
+//         //fetch
+//         cout << mpp[number] << endl;   
+//     }
+//     return 0; 
+// }
+
+
+// same for characters
 int main() {
-    int n;
-    cin >> n;
-    int arr[n];
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
+    string s;
+    cin >> s;
 
     // precompute
-    map<int, int> mpp;
-    for (int i = 0; i < n; i++) {
-        mpp[arr[i]]++;
+    map<char, int> mpp;
+    for (int i = 0; i < s.size(); i++) {
+        mpp[s[i]]++;
     }
 
     // iterate through the map
@@ -71,14 +100,13 @@ int main() {
         cout << it.first << "->" << it.second << endl; // key and value
     }
 
-
     int q;
     cin >> q;
     while (q--) {
-        int number;
-        cin >> number;
-        //fetch
-        cout << mpp[number] << endl;   
+        char c;
+        cin >> c;
+        // fetch
+        cout << mpp[c] << endl;   
     }
-    return 0; 
+    return 0;
 }
