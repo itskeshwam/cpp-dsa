@@ -123,18 +123,82 @@ using namespace std;
 
 
 // check palindrome using recursion
-bool palindrome(string s, int i, int n){
-    if (i >= n / 2) return true;
-    if (s[i] == s[n - i - 1])
-        return palindrome(s, i + 1, n);
-    return false;
+// bool palindrome(string s, int i, int n){
+//     if (i >= n / 2) return true;
+//     if (s[i] == s[n - i - 1])
+//         return palindrome(s, i + 1, n);
+//     return false;
+// }
+// int main(){
+//     string s;
+//     cin >> s;
+//     int n = s.length();
+//     if (palindrome(s, 0, n)) 
+//         cout << "is palindrome";
+//     else 
+//         cout << "is not palindrome";
+// }
+
+// time complexity of palindrome is O(n) and space complexity is O(n) due to recursion stack
+// to reduce time complexity of palindrome to O(n) and space complexity to O(1)
+
+// bool palindrome(string s){
+//     int n = s.length();
+//     for (int i = 0; i < n / 2; i++) {
+//         if (s[i] != s[n - i - 1]) 
+//             return false;
+//     }
+//     return true;
+// }
+// int main(){
+//     string s;
+//     cin >> s;
+//     if (palindrome(s)) 
+//         cout << "is palindrome";
+//     else 
+//         cout << "is not palindrome";
+// }
+
+
+// fibonacci series using recursion
+// int fib(int n){
+//     if (n <= 1) return n;
+//     return fib(n - 1) + fib(n - 2);
+// }
+// int main(){
+//     int n;
+//     cin >> n;
+//     for (int i = 0; i < n; i++) {
+//         cout << fib(i) << " ";
+//     }
+//     return 0;
+// }
+
+
+// print all subsequences of a string
+void printF(int ind, vector<int> &ds, int arr[], int n){
+    if (ind == n) {
+        for (auto it : ds) {
+            cout << it << " ";
+        }
+        if (ds.size() == 0) {
+            cout << "{}"; // null subsequence
+        }cout << endl;
+        return; 
+    }
+    // not take an element in subsequence
+    printF(ind + 1, ds, arr, n); 
+    
+    // take an element in subsequence
+    ds.push_back(arr[ind]);
+    printF(ind + 1, ds, arr, n);
+    ds.pop_back();
+
 }
+
 int main(){
-    string s;
-    cin >> s;
-    int n = s.length();
-    if (palindrome(s, 0, n)) 
-        cout << "is palindrome";
-    else 
-        cout << "is not palindrome";
+    int arr[] = {3, 1, 2};
+    int n = 3;
+    vector<int> ds;
+    printF(0, ds, arr, n);
 }
