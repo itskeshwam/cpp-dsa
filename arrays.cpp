@@ -31,9 +31,9 @@ int print_second_largest(vector<int> &arr, int n) {
 // check if an array is sorted
 bool is_sorted(vector<int> &arr, int n) {
     for (int i = 1; i < n; i++) {
-        if (arr[i] >= arr[i - 1]) {
-            continue; // If current element is greater than or equal to the previous one, continue
-        } else {
+        if (arr[i] >= arr[i - 1]) 
+        {} 
+        else {
             return false; // If any element is smaller than the previous one, it's not sorted
         }
     }
@@ -43,9 +43,36 @@ bool is_sorted(vector<int> &arr, int n) {
 
 
 
+// remove duplicates from an array using set (brute force)
+void remove_duplicates(vector<int> &arr, int n) {
+    set<int> unique_elements;
+    for (int i = 0; i < n; i++) {
+        unique_elements.insert(arr[i]);
+    }
+    arr.assign(unique_elements.begin(), unique_elements.end());
+}
 
+// remove duplicates from an array using two pointers (optimized)
+int remove_duplicates_two_pointers(vector<int> &arr, int n) {
+    if (n == 0) return 0;
+    int i = 0; // Pointer for the next unique element
+    for (int j = 1; j < n; j++) {
+        if (arr[j] != arr[i]) {
+            arr[i+1] = arr[j];
+            i++;
+        }
+    }
+    return (i + 1);
+}
 
-
+// rotate array by k places
+int rotate(vector<int> &arr, int n) {
+    int temp = arr[0];
+    for (int i = 1; i < n; i++) {
+        arr[i - 1] = arr[i];
+    }
+    arr[n - 1] = temp;
+}
 
 int main() {
     int n;
@@ -54,8 +81,23 @@ int main() {
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
-    cout << "Largest element: " << print_largest(arr, n) << endl;
-    cout << "Second largest element: " << print_second_largest(arr, n) << endl;
-    cout << "Is the array sorted? " << (is_sorted(arr, n) ? "Yes" : "No") << endl;
-    return 0;
+    cout << "rotated array: ";
+    rotate(arr, n);
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
 }
+
+// int main() {
+//     int n;
+//     cin >> n;
+//     vector<int> arr(n);
+//     for (int i = 0; i < n; i++) {
+//         cin >> arr[i];
+//     }
+//     // cout << "Largest element: " << print_largest(arr, n) << endl;
+//     // cout << "Second largest element: " << print_second_largest(arr, n) << endl;
+//     // cout << "Is the array sorted? " << (is_sorted(arr, n) ? "Yes" : "No") << endl;
+//     remove_duplicates(arr, n);
+//     return 0;
+// }
