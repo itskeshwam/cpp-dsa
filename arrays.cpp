@@ -229,136 +229,181 @@ vector<int> union_sorted_arrays_optimized(vector<int> &a, vector<int> &b) {
     return union_result;   
 }
 
+
+
+// intersection of two SORTED arrays brute force
+vector<int> intersection_sorted_arrays(vector<int> &a, vector<int> &b, int n2) {
+    vector<int> ans;
+    vector<int> visited(n2, 0); // to keep track of visited elements in b
+    for (int i = 0; i < a.size(); i++) {
+        for (int j = 0; j < n2; j++) {
+            if (a[i] == b[j] && visited[j] == 0) {
+                ans.push_back(a[i]);
+                visited[j] = 1; // mark as visited
+                break;
+            }
+            if (b[j] > a[i]) {
+                break; // since both arrays are sorted, we can break early
+            }
+        }
+    }
+    return ans;
+}
+
+
+
+// intersection optimized 2 pointers
+vector<int> intersection_sorted_arrays_optimized(vector<int> &a, vector<int> &b, int n2) {
+    int n1 = a.size();
+    int i = 0, j = 0;
+    vector<int> intersection_result;
+    while (i < n1 && j < n2) {
+        if (a[i] < b[j]) {
+            i++;
+        } 
+        else if (a[i] > b[j]) {
+            j++;
+        } 
+        else { // a[i] == b[j]
+            intersection_result.push_back(a[i]);
+            i++;
+            j++;
+        }
+    }
+    return intersection_result;
+}
+
+
 int main() {
     int n;
     cin >> n;
     vector<int> arr(n);
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
+    for (int i = 0; i < n; i++) cin >> arr[i];
 
-    // Optional input if using rotate_k_places
-    int k;
-    // cin >> k;
+    // Optional input (needed only for rotations or search)
+    int k; // for rotations
+    int key; // for linear search
 
-    // ==== Uncomment this block to print the largest element ====
+    // =================== FUNCTION TEST CASES ===================
+
+    // ==== Largest Element ====
     // cout << "Largest element: " << print_largest(arr, n) << endl;
 
-    // ==== Uncomment this block to print the second largest element ====
+    // ==== Second Largest Element ====
     // cout << "Second largest element: " << print_second_largest(arr, n) << endl;
 
-    // ==== Uncomment this block to check if array is sorted ====
-    // cout << "Is the array sorted? " << (is_sorted(arr, n) ? "Yes" : "No") << endl;
+    // ==== Check if Sorted ====
+    // cout << "Is array sorted? " << (is_sorted(arr, n) ? "Yes" : "No") << endl;
 
-    // ==== Uncomment this block to remove duplicates using set ====
+    // ==== Remove Duplicates using Set ====
     // remove_duplicates(arr, n);
     // cout << "Array after removing duplicates (set): ";
     // for (int x : arr) cout << x << " ";
     // cout << endl;
 
-    // ==== Uncomment this block to remove duplicates using two pointers ====
+    // ==== Remove Duplicates using Two Pointers ====
     // int new_size = remove_duplicates_two_pointers(arr, n);
-    // cout << "Array after removing duplicates (2 pointers): ";
+    // cout << "Array after removing duplicates (two pointers): ";
     // for (int i = 0; i < new_size; i++) cout << arr[i] << " ";
     // cout << endl;
 
-    // ==== Uncomment this block to rotate array by 1 place ====
+    // ==== Rotate Array Left by 1 ====
     // rotate(arr, n);
-    // cout << "Array after 1-place rotation: ";
-    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << "Array after rotating left by 1: ";
+    // for (int x : arr) cout << x << " ";
     // cout << endl;
 
-    // ==== Uncomment this block to rotate array by k places ====
+    // ==== Rotate Array Left by k ====
     // cin >> k;
     // rotate_k_places(arr, n, k);
-    // cout << "Array after rotating by k places: ";
-    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << "Array after rotating left by " << k << " places: ";
+    // for (int x : arr) cout << x << " ";
     // cout << endl;
 
-
-    // ==== Uncomment this block to use optimized rotate function ====
+    // ==== Optimized Rotate Left by k ====
     // cin >> k;
     // rotate_optimized(arr, n, k);
-    // cout << "Array after optimized rotation: ";
-    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << "Optimized left rotation by " << k << ": ";
+    // for (int x : arr) cout << x << " ";
     // cout << endl;
 
-
-    // ==== Uncomment this block to right rotate an array by k places ====
+    // ==== Rotate Array Right by k ====
     // cin >> k;
     // rotate_right_k_places(arr, n, k);
-    // cout << "Array after right rotating by k places: ";
-    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << "Right rotation by " << k << " places: ";
+    // for (int x : arr) cout << x << " ";
     // cout << endl;
 
-
-    // ==== Uncomment this block to right rotate an array by k places optimized ====
+    // ==== Optimized Rotate Right by k ====
     // cin >> k;
     // rotate_right_k_places_optimized(arr, n, k);
-    // cout << "Array after right rotating by k places optimized: ";
-    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
-    // cout << endl;  
+    // cout << "Optimized right rotation by " << k << ": ";
+    // for (int x : arr) cout << x << " ";
+    // cout << endl;
 
-
-    // ==== Uncomment this block to move all zeros to the end of the array ====
+    // ==== Move Zeros to End (Brute) ====
     // moveZeros(arr, n);
-    // cout << "Array after moving zeros to the end: ";
-    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << "Zeros moved to end (brute): ";
+    // for (int x : arr) cout << x << " ";
     // cout << endl;
 
-
-// ==== Uncomment this block to move all zeros to the end of the array optimized ====
+    // ==== Move Zeros to End (Optimized) ====
     // moveZerosOptimized(arr, n);
-    // cout << "Optimized moving zeros: ";
-    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << "Zeros moved to end (optimized): ";
+    // for (int x : arr) cout << x << " ";
     // cout << endl;
 
-
-// ==== Uncomment this block to perform linear search ====
-    // int key;
-    // cin >> key;  
+    // ==== Linear Search ====
+    // cin >> key;
     // int index = linear_search(arr, n, key);
-    // cout << "Index of key " << key << ": ";
-    // if (index != -1) {
-    //     cout << index << endl;
-    // } else {
-    //     cout << "Not found" << endl;
-    // }
+    // if (index != -1)
+    //     cout << "Element found at index: " << index << endl;
+    // else
+    //     cout << "Element not found." << endl;
 
+    // ==== Union of Two Sorted Arrays (Brute) ====
+    // int m, n2;
+    // cin >> m >> n2;
+    // vector<int> a(m), b(n2);
+    // for (int i = 0; i < m; i++) cin >> a[i];
+    // for (int i = 0; i < n2; i++) cin >> b[i];
+    // vector<int> union_result = union_sorted_arrays(a, b);
+    // cout << "Union (brute): ";
+    // for (int x : union_result) cout << x << " ";
+    // cout << endl;
 
-// ==== Uncomment this block to perform union of two sorted arrays ====
+    // ==== Union of Two Sorted Arrays (Optimized) ====
+    // int m, n2;
+    // cin >> m >> n2;
+    // vector<int> a(m), b(n2);
+    // for (int i = 0; i < m; i++) cin >> a[i];
+    // for (int i = 0; i < n2; i++) cin >> b[i];
+    // vector<int> union_result = union_sorted_arrays_optimized(a, b);
+    // cout << "Union (optimized): ";
+    // for (int x : union_result) cout << x << " ";
+    // cout << endl;
+
+    // ==== Intersection of Two Sorted Arrays (Brute) ====
+    // int m, n2;
+    // cin >> m >> n2;
+    // vector<int> a(m), b(n2);
+    // for (int i = 0; i < m; i++) cin >> a[i];
+    // for (int i = 0; i < n2; i++) cin >> b[i];
+    // vector<int> intersection_result = intersection_sorted_arrays(a, b, n2);
+    // cout << "Intersection (brute): ";
+    // for (int x : intersection_result) cout << x << " ";
+    // cout << endl;
+
+    // ==== Intersection of Two Sorted Arrays (Optimized) ====
     int m, n2;
-    cin >> m >> n2;  
-    vector<int> a(m);
-    for (int i = 0; i < m; i++) {
-        cin >> a[i];
-    }
-    vector<int> b(n2);
-    for (int i = 0; i < n2; i++) {
-        cin >> b[i];
-    }
-    vector<int> union_result = union_sorted_arrays(a, b);
-    cout << "Union of two sorted arrays: ";
-    for (int x : union_result) cout << x << " ";
+    cin >> m >> n2;
+    vector<int> a(m), b(n2);
+    for (int i = 0; i < m; i++) cin >> a[i];
+    for (int i = 0; i < n2; i++) cin >> b[i];
+    vector<int> intersection_result = intersection_sorted_arrays_optimized(a, b, n2);
+    cout << "Intersection (optimized): ";
+    for (int x : intersection_result) cout << x << " ";
     cout << endl;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return 0;
 }
