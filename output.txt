@@ -1,1 +1,1 @@
-Array after rotating by k places: 5 6 7 1 2 3 4 
+Array after optimized rotation: 5 6 7 1 2 3 4 

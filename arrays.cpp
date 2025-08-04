@@ -85,6 +85,16 @@ int rotate_k_places(vector<int> &arr, int n, int k) {
     return 0;
 }
 
+
+// optimized rotate function using reverse
+void rotate_optimized(vector<int> &arr, int n, int k) {
+    k = k % n; // handle cases where k >= n
+    reverse(arr.begin(), arr.begin() + k);
+    reverse(arr.begin() + k, arr.end());
+    reverse(arr.begin(), arr.end());
+} 
+
+
 int main() {
     int n;
     cin >> n;
@@ -125,11 +135,25 @@ int main() {
     // cout << endl;
 
     // ==== Uncomment this block to rotate array by k places ====
+    // cin >> k;
+    // rotate_k_places(arr, n, k);
+    // cout << "Array after rotating by k places: ";
+    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << endl;
+
+
+    // ==== Uncomment this block to use optimized rotate function ====
     cin >> k;
-    rotate_k_places(arr, n, k);
-    cout << "Array after rotating by k places: ";
+    rotate_optimized(arr, n, k);
+    cout << "Array after optimized rotation: ";
     for (int i = 0; i < n; i++) cout << arr[i] << " ";
     cout << endl;
+
+
+    // 
+
+
+
 
     return 0;
 }
