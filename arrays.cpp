@@ -175,6 +175,60 @@ int linear_search(vector<int> &arr, int n, int key) {
 
 
 
+// union and intersection of two SORTED arrays brute force
+vector<int> union_sorted_arrays(vector<int> &a, vector<int> &b) {
+    int n1 = a.size();
+    int n2 = b.size();
+    set<int> st;
+    for (int i = 0; i < n1; i++) {
+        st.insert(a[i]);
+    }
+    for (int i = 0; i < n2; i++) {
+        st.insert(b[i]);
+    }
+    vector<int> temp;
+    for (auto it : st) {
+        temp.push_back(it);
+    }
+    return temp;
+}
+
+
+
+// union optimized 2 pointers
+vector<int> union_sorted_arrays_optimized(vector<int> &a, vector<int> &b) {
+    int n1 = a.size();
+    int n2 = b.size();
+    int i = 0, j = 0;
+    vector<int> union_result;
+    while (i < n1 && j < n2) {
+        if (a[i] <= b[j]) {
+            if (union_result.size() == 0 || union_result.back() != a[i]) {
+                union_result.push_back(a[i]);
+            }
+            i++;
+        } else {
+            if (union_result.size() == 0 || union_result.back() != b[j]) {
+                union_result.push_back(b[j]);
+            }
+            j++;
+        }
+    }
+    while (i < n1) {
+        if (union_result.size() == 0 || union_result.back() != a[i]) {
+            union_result.push_back(a[i]);
+        }
+        i++;
+    }
+    while (j < n2) {
+        if (union_result.size() == 0 || union_result.back() != b[j]) {
+            union_result.push_back(b[j]);
+        }
+        j++;
+    }
+    return union_result;   
+}
+
 int main() {
     int n;
     cin >> n;
@@ -261,15 +315,50 @@ int main() {
 
 
 // ==== Uncomment this block to perform linear search ====
-    int key;
-    cin >> key;  
-    int index = linear_search(arr, n, key);
-    cout << "Index of key " << key << ": ";
-    if (index != -1) {
-        cout << index << endl;
-    } else {
-        cout << "Not found" << endl;
+    // int key;
+    // cin >> key;  
+    // int index = linear_search(arr, n, key);
+    // cout << "Index of key " << key << ": ";
+    // if (index != -1) {
+    //     cout << index << endl;
+    // } else {
+    //     cout << "Not found" << endl;
+    // }
+
+
+// ==== Uncomment this block to perform union of two sorted arrays ====
+    int m, n2;
+    cin >> m >> n2;  
+    vector<int> a(m);
+    for (int i = 0; i < m; i++) {
+        cin >> a[i];
     }
+    vector<int> b(n2);
+    for (int i = 0; i < n2; i++) {
+        cin >> b[i];
+    }
+    vector<int> union_result = union_sorted_arrays(a, b);
+    cout << "Union of two sorted arrays: ";
+    for (int x : union_result) cout << x << " ";
+    cout << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return 0;
 }

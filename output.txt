@@ -1,1 +1,1 @@
-Index of key 3: 4
+Union of two sorted arrays: 0 2 4 6 7 8 9 11 
