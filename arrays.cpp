@@ -97,6 +97,7 @@ void rotate_optimized(vector<int> &arr, int n, int k) {
 
 // right rotate an array by k places
 int rotate_right_k_places(vector<int> &arr, int n, int k) {
+    if (n == 0) return 0;
     k = k % n; 
     for (int i = 0; i < k; i++) {
         int temp = arr[n - 1];
@@ -106,6 +107,70 @@ int rotate_right_k_places(vector<int> &arr, int n, int k) {
         arr[0] = temp;
     }
     return 0;
+}
+
+
+// right rotate an array by k places optimized
+int rotate_right_k_places_optimized(vector<int> &arr, int n, int k)
+{
+    if (n == 0) return 0;
+    k = k % n; // handle cases where k >= n
+    reverse(arr.begin(), arr.end());
+    reverse(arr.begin(), arr.begin() + k);
+    reverse(arr.begin() + k, arr.end());
+    return 0;
+}
+
+
+
+// move all zeros to the end of the array (brute force)
+void moveZeros(vector<int> &arr, int n) {
+    vector<int> temp;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] != 0) {
+            temp.push_back(arr[i]);
+        }
+    }
+    int nz = temp.size();
+    for (int i = 0; i < nz; i++) {
+        arr[i] = temp[i];
+    }
+    for (int i = nz; i < n; i++) {
+        arr[i] = 0;
+    }
+}
+
+
+// move all zeros to the end of the array (optimized) 2 pointers
+vector<int> moveZerosOptimized(vector<int> &arr, int n) {
+    int j = -1; // pointer for non-zero elements
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 0) {
+            j = i;
+            break;
+        }
+    }
+
+    if (j == -1) return arr; // no zeros found
+
+    for (int i = j + 1; i < n; i++) {
+        if (arr[i] != 0) {
+            swap(arr[i], arr[j]);
+            j++;
+        }
+    } return arr;
+}
+
+
+
+// linear search 
+int linear_search(vector<int> &arr, int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            return i; // return index of the key
+        }
+    }
+    return -1; // key not found
 }
 
 
@@ -166,15 +231,45 @@ int main() {
 
 
     // ==== Uncomment this block to right rotate an array by k places ====
-    cin >> k;
-    rotate_right_k_places(arr, n, k);
-    cout << "Array after right rotating by k places: ";
-    for (int i = 0; i < n; i++) cout << arr[i] << " ";
-    cout << endl;
+    // cin >> k;
+    // rotate_right_k_places(arr, n, k);
+    // cout << "Array after right rotating by k places: ";
+    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << endl;
 
 
+    // ==== Uncomment this block to right rotate an array by k places optimized ====
+    // cin >> k;
+    // rotate_right_k_places_optimized(arr, n, k);
+    // cout << "Array after right rotating by k places optimized: ";
+    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << endl;  
 
 
+    // ==== Uncomment this block to move all zeros to the end of the array ====
+    // moveZeros(arr, n);
+    // cout << "Array after moving zeros to the end: ";
+    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << endl;
+
+
+// ==== Uncomment this block to move all zeros to the end of the array optimized ====
+    // moveZerosOptimized(arr, n);
+    // cout << "Optimized moving zeros: ";
+    // for (int i = 0; i < n; i++) cout << arr[i] << " ";
+    // cout << endl;
+
+
+// ==== Uncomment this block to perform linear search ====
+    int key;
+    cin >> key;  
+    int index = linear_search(arr, n, key);
+    cout << "Index of key " << key << ": ";
+    if (index != -1) {
+        cout << index << endl;
+    } else {
+        cout << "Not found" << endl;
+    }
 
     return 0;
 }

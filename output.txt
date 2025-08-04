@@ -1,1 +1,1 @@
-Array after right rotating by k places: 7 1 2 3 4 5 6 
+Index of key 3: 4
