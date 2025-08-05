@@ -329,9 +329,23 @@ int find_missing_number_xor(vector<int> &arr, int n) {
 
 
 
+// maximum consecutive 1's 
+int max_consecutive_ones(vector<int> &arr, int n) {
+    int max_count = 0, count = 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 1) {
+            count++;
+            max_count = max(max_count, count);
+        } else {
+            count = 0; // reset count when a 0 is encountered
+        }
+    }
+    return max_count;
+}
 
 
 
+// find the number that appears only once in an array where every other number appears twice
 
 
 
@@ -352,84 +366,99 @@ int main() {
     int k; // for rotations
     int key; // for linear search
     
-    // =================== FUNCTION TEST CASES ===================
-    
-    // ==== Largest Element ====
+// =================== FUNCTION TEST CASES ===================
+// Uncomment the following lines to test each function individually
+
+
+// ==== Largest Element ====
     // cout << "Largest element: " << print_largest(arr, n) << endl;
-    
+
+
 // ==== Second Largest Element ====
-// cout << "Second largest element: " << print_second_largest(arr, n) << endl;
+    // cout << "Second largest element: " << print_second_largest(arr, n) << endl;
+
 
 // ==== Check if Sorted ====
-// cout << "Is array sorted? " << (is_sorted(arr, n) ? "Yes" : "No") << endl;
+    // cout << "Is array sorted? " << (is_sorted(arr, n) ? "Yes" : "No") << endl;
+
 
 // ==== Remove Duplicates using Set ====
-// remove_duplicates(arr, n);
-// cout << "Array after removing duplicates (set): ";
-// for (int x : arr) cout << x << " ";
-// cout << endl;
+    // remove_duplicates(arr, n);
+    // cout << "Array after removing duplicates (set): ";
+    // for (int x : arr) cout << x << " ";
+    // cout << endl;
+
 
 // ==== Remove Duplicates using Two Pointers ====
-// int new_size = remove_duplicates_two_pointers(arr, n);
-// cout << "Array after removing duplicates (two pointers): ";
-// for (int i = 0; i < new_size; i++) cout << arr[i] << " ";
-// cout << endl;
+    // int new_size = remove_duplicates_two_pointers(arr, n);
+    // cout << "Array after removing duplicates (two pointers): ";
+    // for (int i = 0; i < new_size; i++) cout << arr[i] << " ";
+    // cout << endl;
+
 
 // ==== Rotate Array Left by 1 ====
-// rotate(arr, n);
-// cout << "Array after rotating left by 1: ";
-// for (int x : arr) cout << x << " ";
-// cout << endl;
+    // rotate(arr, n);
+    // cout << "Array after rotating left by 1: ";
+    // for (int x : arr) cout << x << " ";
+    // cout << endl;
+
 
 // ==== Rotate Array Left by k ====
-// cin >> k;
-// rotate_k_places(arr, n, k);
-// cout << "Array after rotating left by " << k << " places: ";
-// for (int x : arr) cout << x << " ";
-// cout << endl;
+    // cin >> k;
+    // rotate_k_places(arr, n, k);
+    // cout << "Array after rotating left by " << k << " places: ";
+    // for (int x : arr) cout << x << " ";
+    // cout << endl;
+
 
 // ==== Optimized Rotate Left by k ====
-// cin >> k;
-// rotate_optimized(arr, n, k);
-// cout << "Optimized left rotation by " << k << ": ";
-// for (int x : arr) cout << x << " ";
-// cout << endl;
+    // cin >> k;
+    // rotate_optimized(arr, n, k);
+    // cout << "Optimized left rotation by " << k << ": ";
+    // for (int x : arr) cout << x << " ";
+    // cout << endl;
+
 
 // ==== Rotate Array Right by k ====
-// cin >> k;
-// rotate_right_k_places(arr, n, k);
-// cout << "Right rotation by " << k << " places: ";
-// for (int x : arr) cout << x << " ";
-// cout << endl;
+    // cin >> k;
+    // rotate_right_k_places(arr, n, k);
+    // cout << "Right rotation by " << k << " places: ";
+    // for (int x : arr) cout << x << " ";
+    // cout << endl;
+
 
 // ==== Optimized Rotate Right by k ====
-// cin >> k;
+    // cin >> k;
     // rotate_right_k_places_optimized(arr, n, k);
     // cout << "Optimized right rotation by " << k << ": ";
     // for (int x : arr) cout << x << " ";
     // cout << endl;
 
-    // ==== Move Zeros to End (Brute) ====
+
+// ==== Move Zeros to End (Brute) ====
     // moveZeros(arr, n);
     // cout << "Zeros moved to end (brute): ";
     // for (int x : arr) cout << x << " ";
     // cout << endl;
     
-    // ==== Move Zeros to End (Optimized) ====
+
+// ==== Move Zeros to End (Optimized) ====
     // moveZerosOptimized(arr, n);
     // cout << "Zeros moved to end (optimized): ";
     // for (int x : arr) cout << x << " ";
     // cout << endl;
-    
-    // ==== Linear Search ====
+
+
+// ==== Linear Search ====
     // cin >> key;
     // int index = linear_search(arr, n, key);
     // if (index != -1)
     //     cout << "Element found at index: " << index << endl;
     // else
     //     cout << "Element not found." << endl;
-    
-    // ==== Union of Two Sorted Arrays (Brute) ====
+
+
+// ==== Union of Two Sorted Arrays (Brute) ====
     // int m, n2;
     // cin >> m >> n2;
     // vector<int> a(m), b(n2);
@@ -439,8 +468,9 @@ int main() {
     // cout << "Union (brute): ";
     // for (int x : union_result) cout << x << " ";
     // cout << endl;
-    
-    // ==== Union of Two Sorted Arrays (Optimized) ====
+
+
+// ==== Union of Two Sorted Arrays (Optimized) ====
     // int m, n2;
     // cin >> m >> n2;
     // vector<int> a(m), b(n2);
@@ -450,8 +480,9 @@ int main() {
     // cout << "Union (optimized): ";
     // for (int x : union_result) cout << x << " ";
     // cout << endl;
-    
-    // ==== Intersection of Two Sorted Arrays (Brute) ====
+
+
+// ==== Intersection of Two Sorted Arrays (Brute) ====
     // int m, n2;
     // cin >> m >> n2;
     // vector<int> a(m), b(n2);
@@ -461,8 +492,9 @@ int main() {
     // cout << "Intersection (brute): ";
     // for (int x : intersection_result) cout << x << " ";
     // cout << endl;
-    
-    // ==== Intersection of Two Sorted Arrays (Optimized) ====
+
+
+// ==== Intersection of Two Sorted Arrays (Optimized) ====
     // int m, n2;
     // cin >> m >> n2;
     // vector<int> a(m), b(n2);
@@ -472,29 +504,38 @@ int main() {
     // cout << "Intersection (optimized): ";
     // for (int x : intersection_result) cout << x << " ";
     // cout << endl;
-    
-    
-    
-    // ==== Find Missing Number (Brute Force) ====
+
+
+// ==== Find Missing Number (Brute Force) ====
     // int missing_number = find_missing_number_brute(arr, n);
     // cout << "Missing number (brute): " << missing_number << endl;
-    
 
-    // ==== Find Missing Number (Hashing) ====
+
+// ==== Find Missing Number (Hashing) ====
     // int missing_number_hashing = find_missing_number_hashing(arr, n);
     // cout << "Missing number (hashing): " << missing_number_hashing << endl;
-    
-    
-    // ==== Find Missing Number (Optimal) ====
+
+
+// ==== Find Missing Number (Optimal) ====
     // int missing_number_optimal = find_missing_number_optimal(arr, n);
     // cout << "Missing number (optimal): " << missing_number_optimal << endl;
-    
-    
-    // ==== Find Missing Number (XOR) for 0 to n ====
-    int missing_number_xor = find_missing_number_xor(arr, n);
-    cout << "Missing number (XOR): " << missing_number_xor << endl;
-    
-    
+
+
+// ==== Find Missing Number (XOR) for 0 to n ====
+    // int missing_number_xor = find_missing_number_xor(arr, n);
+    // cout << "Missing number (XOR): " << missing_number_xor << endl;
+
+
+// ==== Maximum Consecutive 1's ====
+    // cout << "Maximum consecutive 1's: " << max_consecutive_ones(arr, n) << endl;
+
+
+// ==== Find the number that appears only once in an array where every other number appears twice ====
+
+
+
+
+
     
     return 0;
 }
