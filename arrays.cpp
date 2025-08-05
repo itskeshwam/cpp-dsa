@@ -346,8 +346,69 @@ int max_consecutive_ones(vector<int> &arr, int n) {
 
 
 // find the number that appears only once in an array where every other number appears twice
+// brute force (for every element linear search)
+int find_unique_number_brute(vector<int> &arr, int n) {
+    for (int i = 0; i < n; i++) {
+        int num = arr[i];
+        int cnt = 0;
+        for (int j = 0; j < n; j++) {
+            if (arr[j] == num) {
+                cnt++;
+            }
+        }
+        if (cnt == 1) {
+            return num; // unique number found
+        }
+    }
+    return -1; // if no unique number found
+}
+
+// better using hashing
+int find_unique_number_hashing(vector<int> &arr, int n) {
+    int maxi = 0;
+    for (int i = 0; i < n; i++) {
+        maxi = max(maxi, arr[i]);
+    }
+    vector<int> hash(maxi + 1, 0);  
+    for (int i = 0; i < n; i++) {
+        hash[arr[i]]++;
+    }
+    for (int i = 0; i <= maxi; i++) {
+        if (hash[i] == 1) {
+            return i; // unique number found
+        }
+    }
+    return -1; // if no unique number found
+}
 
 
+// better with map 
+int find_unique_number_map(vector<int> &arr, int n) {
+    unordered_map<int, int> mpp; 
+    for (int i = 0; i < n; i++) {
+        mpp[arr[i]]++;
+    }
+    for (auto it : mpp) {
+        if (it.second == 1) {
+            return it.first; // unique number found
+        }
+    }
+    return -1; // if no unique number found
+}
+
+
+// optimal approach using XOR
+int find_unique_number_xor(vector<int> &arr, int n) {
+    int xoor = 0;
+    for (int i = 0; i < n; i++) {
+        xoor ^= arr[i]; // XOR all elements
+    }
+    return xoor; // the result will be the unique number
+}
+
+
+
+// 
 
 
 
@@ -531,6 +592,23 @@ int main() {
 
 
 // ==== Find the number that appears only once in an array where every other number appears twice ====
+    // brute 
+    // int unique_number_brute = find_unique_number_brute(arr, n);
+    // cout << "Unique number (brute): " << unique_number_brute << endl;
+    
+    // better using hashing
+    // int unique_number_hashing = find_unique_number_hashing(arr, n);
+    // cout << "Unique number (hashing): " << unique_number_hashing << endl;
+    
+    // better with map
+    // int unique_number_map = find_unique_number_map(arr, n);
+    // cout << "Unique number (map): " << unique_number_map << endl;
+
+    // optimal using XOR
+    int unique_number_xor = find_unique_number_xor(arr, n);
+    cout << "Missing number (XOR): " << unique_number_xor << endl;
+
+    
 
 
 
