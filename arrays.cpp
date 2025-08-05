@@ -274,6 +274,74 @@ vector<int> intersection_sorted_arrays_optimized(vector<int> &a, vector<int> &b,
 }
 
 
+
+// find the missing number in an array of size n containing numbers from 1 to n brute force 
+// liner search
+int find_missing_number_brute(vector<int> &arr, int n) {
+    for (int i = 1; i <= n; i++) {
+        int flag = 0;
+        for (int j = 0; j < n; j++) {
+            if (arr[j] == i) {
+                flag = 1;
+                break;
+            }
+        }
+        if (flag == 0) {
+            return i; // missing number found
+        }
+    }
+    return -1; // if no missing number found
+}
+
+// better approach using hashing
+int find_missing_number_hashing(vector<int> &arr, int n) {
+    vector<int> hash(n + 1, 0); 
+    for (int i = 0; i < n; i++) {
+        hash[arr[i]] = 1; // mark the number as present
+    }
+    for (int i = 1; i <= n; i++) {
+        if (hash[i] == 0) {
+            return i; // missing number found
+        }
+    }
+    return -1; // if no missing number found
+}
+
+// optimal approach using sum formula
+int find_missing_number_optimal(vector<int> &arr, int n) {
+    int total_sum = (n * (n + 1)) / 2; 
+    int s2 = 0; // sum of elements in the array
+    for (int i = 0; i < n; i++) {
+        s2 += arr[i];
+    }
+    return total_sum - s2; // missing number is the difference
+}
+
+int find_missing_number_xor(vector<int> &arr, int n) {
+    int xor1 = 0, xor2 = 0;
+    for (int i = 0; i < n; i++) {
+        xor1 ^= i;
+        xor2 ^= arr[i];
+    }
+    xor1 ^= n; // include n in the XOR (since range is 0 to n)
+    return xor1 ^ xor2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int main() {
     int n;
     cin >> n;
@@ -283,59 +351,59 @@ int main() {
     // Optional input (needed only for rotations or search)
     int k; // for rotations
     int key; // for linear search
-
+    
     // =================== FUNCTION TEST CASES ===================
-
+    
     // ==== Largest Element ====
     // cout << "Largest element: " << print_largest(arr, n) << endl;
+    
+// ==== Second Largest Element ====
+// cout << "Second largest element: " << print_second_largest(arr, n) << endl;
 
-    // ==== Second Largest Element ====
-    // cout << "Second largest element: " << print_second_largest(arr, n) << endl;
+// ==== Check if Sorted ====
+// cout << "Is array sorted? " << (is_sorted(arr, n) ? "Yes" : "No") << endl;
 
-    // ==== Check if Sorted ====
-    // cout << "Is array sorted? " << (is_sorted(arr, n) ? "Yes" : "No") << endl;
+// ==== Remove Duplicates using Set ====
+// remove_duplicates(arr, n);
+// cout << "Array after removing duplicates (set): ";
+// for (int x : arr) cout << x << " ";
+// cout << endl;
 
-    // ==== Remove Duplicates using Set ====
-    // remove_duplicates(arr, n);
-    // cout << "Array after removing duplicates (set): ";
-    // for (int x : arr) cout << x << " ";
-    // cout << endl;
+// ==== Remove Duplicates using Two Pointers ====
+// int new_size = remove_duplicates_two_pointers(arr, n);
+// cout << "Array after removing duplicates (two pointers): ";
+// for (int i = 0; i < new_size; i++) cout << arr[i] << " ";
+// cout << endl;
 
-    // ==== Remove Duplicates using Two Pointers ====
-    // int new_size = remove_duplicates_two_pointers(arr, n);
-    // cout << "Array after removing duplicates (two pointers): ";
-    // for (int i = 0; i < new_size; i++) cout << arr[i] << " ";
-    // cout << endl;
+// ==== Rotate Array Left by 1 ====
+// rotate(arr, n);
+// cout << "Array after rotating left by 1: ";
+// for (int x : arr) cout << x << " ";
+// cout << endl;
 
-    // ==== Rotate Array Left by 1 ====
-    // rotate(arr, n);
-    // cout << "Array after rotating left by 1: ";
-    // for (int x : arr) cout << x << " ";
-    // cout << endl;
+// ==== Rotate Array Left by k ====
+// cin >> k;
+// rotate_k_places(arr, n, k);
+// cout << "Array after rotating left by " << k << " places: ";
+// for (int x : arr) cout << x << " ";
+// cout << endl;
 
-    // ==== Rotate Array Left by k ====
-    // cin >> k;
-    // rotate_k_places(arr, n, k);
-    // cout << "Array after rotating left by " << k << " places: ";
-    // for (int x : arr) cout << x << " ";
-    // cout << endl;
+// ==== Optimized Rotate Left by k ====
+// cin >> k;
+// rotate_optimized(arr, n, k);
+// cout << "Optimized left rotation by " << k << ": ";
+// for (int x : arr) cout << x << " ";
+// cout << endl;
 
-    // ==== Optimized Rotate Left by k ====
-    // cin >> k;
-    // rotate_optimized(arr, n, k);
-    // cout << "Optimized left rotation by " << k << ": ";
-    // for (int x : arr) cout << x << " ";
-    // cout << endl;
+// ==== Rotate Array Right by k ====
+// cin >> k;
+// rotate_right_k_places(arr, n, k);
+// cout << "Right rotation by " << k << " places: ";
+// for (int x : arr) cout << x << " ";
+// cout << endl;
 
-    // ==== Rotate Array Right by k ====
-    // cin >> k;
-    // rotate_right_k_places(arr, n, k);
-    // cout << "Right rotation by " << k << " places: ";
-    // for (int x : arr) cout << x << " ";
-    // cout << endl;
-
-    // ==== Optimized Rotate Right by k ====
-    // cin >> k;
+// ==== Optimized Rotate Right by k ====
+// cin >> k;
     // rotate_right_k_places_optimized(arr, n, k);
     // cout << "Optimized right rotation by " << k << ": ";
     // for (int x : arr) cout << x << " ";
@@ -346,13 +414,13 @@ int main() {
     // cout << "Zeros moved to end (brute): ";
     // for (int x : arr) cout << x << " ";
     // cout << endl;
-
+    
     // ==== Move Zeros to End (Optimized) ====
     // moveZerosOptimized(arr, n);
     // cout << "Zeros moved to end (optimized): ";
     // for (int x : arr) cout << x << " ";
     // cout << endl;
-
+    
     // ==== Linear Search ====
     // cin >> key;
     // int index = linear_search(arr, n, key);
@@ -360,7 +428,7 @@ int main() {
     //     cout << "Element found at index: " << index << endl;
     // else
     //     cout << "Element not found." << endl;
-
+    
     // ==== Union of Two Sorted Arrays (Brute) ====
     // int m, n2;
     // cin >> m >> n2;
@@ -371,7 +439,7 @@ int main() {
     // cout << "Union (brute): ";
     // for (int x : union_result) cout << x << " ";
     // cout << endl;
-
+    
     // ==== Union of Two Sorted Arrays (Optimized) ====
     // int m, n2;
     // cin >> m >> n2;
@@ -382,7 +450,7 @@ int main() {
     // cout << "Union (optimized): ";
     // for (int x : union_result) cout << x << " ";
     // cout << endl;
-
+    
     // ==== Intersection of Two Sorted Arrays (Brute) ====
     // int m, n2;
     // cin >> m >> n2;
@@ -393,17 +461,40 @@ int main() {
     // cout << "Intersection (brute): ";
     // for (int x : intersection_result) cout << x << " ";
     // cout << endl;
-
+    
     // ==== Intersection of Two Sorted Arrays (Optimized) ====
-    int m, n2;
-    cin >> m >> n2;
-    vector<int> a(m), b(n2);
-    for (int i = 0; i < m; i++) cin >> a[i];
-    for (int i = 0; i < n2; i++) cin >> b[i];
-    vector<int> intersection_result = intersection_sorted_arrays_optimized(a, b, n2);
-    cout << "Intersection (optimized): ";
-    for (int x : intersection_result) cout << x << " ";
-    cout << endl;
+    // int m, n2;
+    // cin >> m >> n2;
+    // vector<int> a(m), b(n2);
+    // for (int i = 0; i < m; i++) cin >> a[i];
+    // for (int i = 0; i < n2; i++) cin >> b[i];
+    // vector<int> intersection_result = intersection_sorted_arrays_optimized(a, b, n2);
+    // cout << "Intersection (optimized): ";
+    // for (int x : intersection_result) cout << x << " ";
+    // cout << endl;
+    
+    
+    
+    // ==== Find Missing Number (Brute Force) ====
+    // int missing_number = find_missing_number_brute(arr, n);
+    // cout << "Missing number (brute): " << missing_number << endl;
+    
 
+    // ==== Find Missing Number (Hashing) ====
+    // int missing_number_hashing = find_missing_number_hashing(arr, n);
+    // cout << "Missing number (hashing): " << missing_number_hashing << endl;
+    
+    
+    // ==== Find Missing Number (Optimal) ====
+    // int missing_number_optimal = find_missing_number_optimal(arr, n);
+    // cout << "Missing number (optimal): " << missing_number_optimal << endl;
+    
+    
+    // ==== Find Missing Number (XOR) for 0 to n ====
+    int missing_number_xor = find_missing_number_xor(arr, n);
+    cout << "Missing number (XOR): " << missing_number_xor << endl;
+    
+    
+    
     return 0;
 }

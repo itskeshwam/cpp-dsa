@@ -1,1 +1,1 @@
-Intersection (optimized): 
+Missing number (XOR): 5
