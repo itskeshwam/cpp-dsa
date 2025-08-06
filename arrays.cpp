@@ -408,7 +408,21 @@ int find_unique_number_xor(vector<int> &arr, int n) {
 
 
 
-// 
+// longest subarray with sum k (positive integers)
+// brute force (generate all subarrays and check their sums)
+int longest_subarray_with_sum_k_brute(vector<int> &arr, int n, int k) {
+    int max_length = 0;
+    for (int i = 0; i < n; i++) {
+        int current_sum = 0;
+        for (int j = i; j < n; j++) {
+            current_sum += arr[j];
+            if (current_sum == k) {
+                max_length = max(max_length, j - i + 1);
+            }
+        }
+    }
+    return max_length;
+}
 
 
 
@@ -424,7 +438,7 @@ int main() {
     for (int i = 0; i < n; i++) cin >> arr[i];
 
     // Optional input (needed only for rotations or search)
-    int k; // for rotations
+    int k; // for rotations, longest subarray, 
     int key; // for linear search
     
 // =================== FUNCTION TEST CASES ===================
@@ -605,10 +619,14 @@ int main() {
     // cout << "Unique number (map): " << unique_number_map << endl;
 
     // optimal using XOR
-    int unique_number_xor = find_unique_number_xor(arr, n);
-    cout << "Missing number (XOR): " << unique_number_xor << endl;
+    // int unique_number_xor = find_unique_number_xor(arr, n);
+    // cout << "Missing number (XOR): " << unique_number_xor << endl;
 
     
+// ==== Longest Subarray with Sum k (Brute Force) ====
+    cin >> k;
+    int longest_length = longest_subarray_with_sum_k_brute(arr, n, k);
+    cout << "Longest subarray with sum " << k << ": " << longest_length << endl;
 
 
 
