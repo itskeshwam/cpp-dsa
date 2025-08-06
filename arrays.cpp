@@ -426,8 +426,55 @@ int longest_subarray_with_sum_k_brute(vector<int> &arr, int n, int k) {
 
 
 
+// better using hashing
+    // wont work for negative numbers   
+int longest_subarray_with_sum_k_hashing(vector<int> &a, int n, int k) {
+    map<long long, int> preSumMap;
+    long long sum = 0;
+    int maxLen = 0;
+    for (int i = 0; i < a.size(); i++) {
+        sum += a[i];
+        if (sum == k) {
+            maxLen = max(maxLen, i + 1); // subarray from start to i
+        }
+        int rem = sum - k;
+        if (preSumMap.find(rem) != preSumMap.end()) {
+            int len = i - preSumMap[rem];
+            maxLen = max(maxLen, len);
+        }
+        // for zeroes put this 
+        // preSumMap[sum] = i; // store the first occurrence of this sum
+    
+        // for negative numbers, we need to store the first occurrence of each sum
+        if (preSumMap.find(sum) == preSumMap.end()) {   
+            preSumMap[sum] = i; // store the first occurrence of this sum
+        }    
+    }
+    return maxLen;
+}
 
 
+// optimal using 2 pointers
+// This approach works only for positive integers
+int longest_subarray_with_sum_k_2_pointers(vector<int> &a, int n, int k) {
+    int left = 0, right = 0;
+    long long sum = 0; 
+    int max_length = 0;
+    int n = a.size();
+    while (right < n) {
+        while (left <= right && sum > k) {
+            sum -= a[left];
+            left++;
+        }
+        if (sum == k) {
+            max_length = max(max_length, right - left + 1);
+        }
+        right++;
+        if (right < n) // check to avoid out of bounds
+            sum += a[right];
+    }
+    return max_length;
+}
 
 
 
@@ -624,10 +671,20 @@ int main() {
 
     
 // ==== Longest Subarray with Sum k (Brute Force) ====
-    cin >> k;
-    int longest_length = longest_subarray_with_sum_k_brute(arr, n, k);
-    cout << "Longest subarray with sum " << k << ": " << longest_length << endl;
+    // brute force won't work for negative numbers and zeros
+        // cin >> k;
+        // int longest_length = longest_subarray_with_sum_k_brute(arr, n, k);
+        // cout << "Longest subarray with sum " << k << ": " << longest_length << endl;
 
+    // better using hash map for positive integers and zeros and optimal for negative numbers
+        cin >> k;
+        int longest_length_hashing = longest_subarray_with_sum_k_hashing(arr, n, k);
+        cout << "Longest subarray with sum " << k << " (hashing): " << longest_length_hashing << endl;   
+
+    // optimal using 2 pointers for positive integers and zeros
+        // cin >> k;
+        // int longest_length_2_pointers = longest_subarray_with_sum_k_2_pointers(arr, n, k);
+        // cout << "Longest subarray with sum " << k << " (2 pointers): " << longest_length_2_pointers << endl;
 
 
 
