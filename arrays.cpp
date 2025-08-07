@@ -460,7 +460,6 @@ int longest_subarray_with_sum_k_2_pointers(vector<int> &a, int n, int k) {
     int left = 0, right = 0;
     long long sum = 0; 
     int max_length = 0;
-    int n = a.size();
     while (right < n) {
         while (left <= right && sum > k) {
             sum -= a[left];
@@ -478,6 +477,53 @@ int longest_subarray_with_sum_k_2_pointers(vector<int> &a, int n, int k) {
 
 
 
+// 2 sum problem
+// brute force
+vector<int> two_sum_brute(vector<int> &arr, int n, int target) {
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (arr[i] + arr[j] == target) {
+                return {i, j};
+            }
+        }
+    }
+    return {};  // empty vector
+}
+
+// better using hashing
+vector<int> two_sum_hashing(vector<int> &nums, int target) {
+    map<int, int> mpp;
+    int n = nums.size();
+    for (int i = 0; i < n; i++) {
+        int num = nums[i];
+        int moreNeeded = target - num;
+        if (mpp.find(moreNeeded) != mpp.end()) {
+            return {mpp[moreNeeded], i}; // return indices of the two numbers
+        }
+        mpp[num] = i; // store the index of the current number
+    }
+    return {-1, -1}; // empty vector if no pair found
+}
+
+
+
+// optimal using two pointers
+string two_sum_two_pointers(vector<int> &arr, int target) {
+    int left = 0, right = arr.size() - 1;
+    while (left < right) {
+        int sum = arr[left] + arr[right];
+        if (sum == target) {
+            return "Yes";
+        } else if (sum < target) { left++;
+        } else right--;
+    }
+    return "No"; // if no pair found
+}
+
+
+
+
+
 int main() {
     int n;
     cin >> n;
@@ -487,6 +533,7 @@ int main() {
     // Optional input (needed only for rotations or search)
     int k; // for rotations, longest subarray, 
     int key; // for linear search
+    int target; // for 2 sum problem
     
 // =================== FUNCTION TEST CASES ===================
 // Uncomment the following lines to test each function individually
@@ -677,9 +724,9 @@ int main() {
         // cout << "Longest subarray with sum " << k << ": " << longest_length << endl;
 
     // better using hash map for positive integers and zeros and optimal for negative numbers
-        cin >> k;
-        int longest_length_hashing = longest_subarray_with_sum_k_hashing(arr, n, k);
-        cout << "Longest subarray with sum " << k << " (hashing): " << longest_length_hashing << endl;   
+        // cin >> k;
+        // int longest_length_hashing = longest_subarray_with_sum_k_hashing(arr, n, k);
+        // cout << "Longest subarray with sum " << k << " (hashing): " << longest_length_hashing << endl;   
 
     // optimal using 2 pointers for positive integers and zeros
         // cin >> k;
@@ -687,8 +734,64 @@ int main() {
         // cout << "Longest subarray with sum " << k << " (2 pointers): " << longest_length_2_pointers << endl;
 
 
-
-
+// ==== 2 Sum Problem ====
+    // brute force
+        // cin >> target;
+        // vector<int> result = two_sum_brute(arr, n, target);
+        // if (!result.empty()) {
+        //     cout << "Indices: " << result[0] << ", " << result[1] << endl;
+        // } else {
+        //     cout << "No such pair found." << endl;
+        // }
     
-    return 0;
+    
+    // better using hashing
+        // cin >> target; 
+        // vector<int> result_hashing = two_sum_hashing(arr, target);
+        // if (result_hashing[0] != -1) {
+        //     cout << "Indices: " << result_hashing[0] << ", " << result_hashing[1] << endl;
+        // } else {
+        //     cout << "No such pair found." << endl;
+        // }
+
+    // optimal using two pointers 
+        cin >> target;
+        string result_two_pointers = two_sum_two_pointers(arr, target);
+        cout << result_two_pointers << endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

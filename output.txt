@@ -1,1 +1,1 @@
-Longest subarray with sum 3 (hashing): 5
+Yes
