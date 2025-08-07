@@ -1,1 +1,1 @@
-Yes
+Sorted array of 0's, 1's, and 2's (Dutch National Flag): 0 0 1 1 1 2 2 

@@ -522,6 +522,62 @@ string two_sum_two_pointers(vector<int> &arr, int target) {
 
 
 
+// sort an array of 0's, 1's, and 2's
+// brute (just sort the array)
+// better using counting sort
+void sort_012(vector<int> &arr, int n) {
+    int cnt0 = 0, cnt1 = 0, cnt2 = 0;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == 0) cnt0++;
+        else if (arr[i] == 1) cnt1++;
+        else cnt2++;
+    }
+    for (int i = 0; i < cnt0 ; i++) {
+        arr[i] = 0;
+    }
+    for (int i = cnt0; i < cnt0 + cnt1; i++) {
+        arr[i] = 1;
+    }
+    for (int i = cnt0 + cnt1; i < n; i++) {
+        arr[i] = 2;
+    }
+}
+
+
+// optimal using Dutch National Flag Algorithm
+    void sort_012_dutch_flag(vector<int> &arr, int n) {
+        int low = 0, mid = 0, high = n - 1;
+        while (mid <= high) {
+            if (arr[mid] == 0) {
+                swap(arr[low], arr[mid]);
+                low++;
+                mid++;
+            } else if (arr[mid] == 1) {
+                mid++;
+            } else { // arr[mid] == 2
+                swap(arr[mid], arr[high]);
+                high--;
+            }
+        }
+    }    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 int main() {
@@ -755,9 +811,28 @@ int main() {
         // }
 
     // optimal using two pointers 
-        cin >> target;
-        string result_two_pointers = two_sum_two_pointers(arr, target);
-        cout << result_two_pointers << endl;
+        // cin >> target;
+        // string result_two_pointers = two_sum_two_pointers(arr, target);
+        // cout << result_two_pointers << endl;
+
+
+
+// sort an array of 0's, 1's, and 2's
+    // better using counting sort
+        // sort_012(arr, n);
+        // cout << "Sorted array of 0's, 1's, and 2's: ";
+        // for (int x : arr) cout << x << " ";
+        // cout << endl;
+
+
+    // optimal using Dutch National Flag Algorithm
+        sort_012(arr, n);
+        cout << "Sorted array of 0's, 1's, and 2's (Dutch National Flag): ";
+        for (int x : arr) cout << x << " ";
+        cout << endl;
+
+
+    
 
 
 
@@ -793,5 +868,5 @@ int main() {
 
 
 
-
+    return 0;
 }
