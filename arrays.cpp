@@ -563,6 +563,70 @@ void sort_012(vector<int> &arr, int n) {
 
 
 
+// majority element in an array 
+// brute force
+int majority_element_brute(vector<int> &arr, int n) {
+    for (int i = 0; i < n; i++) {
+        int count = 0;
+        for (int j = 0; j < n; j++) {
+            if (arr[j] == arr[i]) {
+                count++;
+            }
+        }
+        if (count > n / 2) {
+            return arr[i]; // majority element found
+        }
+    }
+    return -1; // if no majority element found
+}
+
+
+
+// better approach using hashing
+int majority_element_hashing(vector<int> &v){
+    map<int, int> mpp;
+    for (int i = 0; i < v.size(); i++) {
+        mpp[v[i]]++;
+    }
+    for (auto it : mpp) {
+        if (it.second > v.size() / 2) {
+            return it.first; // majority element found
+        }
+    }
+    return -1; // if no majority element found
+}
+
+
+// optimal approach using Boyer-Moore Voting Algorithm
+int majority_element_boyer_moore(vector<int> &v) {
+    int count = 0;
+    int element;
+    for (int i = 0; i < v.size(); i++) {
+        if (count == 0) {
+            element = v[i];
+            count = 1;
+        } else if (v[i] == element) {
+            count++;
+        } else {
+            count--;
+        }
+    }
+    int count1 = 0;
+    for (int i = 0; i < v.size(); i++) {
+        if (v[i] == element) {
+            count1++;
+        }
+    } if (count1 > v.size() / 2) {
+        return element; // majority element found
+    }
+    return -1; // if no majority element found
+}
+
+    
+
+
+
+
 
 
 
@@ -826,13 +890,38 @@ int main() {
 
 
     // optimal using Dutch National Flag Algorithm
-        sort_012(arr, n);
-        cout << "Sorted array of 0's, 1's, and 2's (Dutch National Flag): ";
-        for (int x : arr) cout << x << " ";
-        cout << endl;
+        // sort_012(arr, n);
+        // cout << "Sorted array of 0's, 1's, and 2's (Dutch National Flag): ";
+        // for (int x : arr) cout << x << " ";
+        // cout << endl;
 
 
-    
+// majority element in an array
+    // brute force
+        // int majority_element = majority_element_brute(arr, n);
+        // if (majority_element != -1) {
+        //     cout << "Majority element: " << majority_element << endl;
+        // } else {
+        //     cout << "No majority element found." << endl;
+        // }
+
+
+    // better
+        // int majority = majority_element_hashing(arr);
+        // if (majority != -1) {
+        //     cout << "Majority element (hashing): " << majority << endl;
+        // } else {
+        //     cout << "No majority element found." << endl;
+        // }
+
+
+    // optimal using Boyer-Moore Voting Algorithm
+        int majority_boyer_moore = majority_element_boyer_moore(arr);
+        if (majority_boyer_moore != -1) {
+            cout << "Majority element (Boyer-Moore): " << majority_boyer_moore << endl;
+        } else {
+            cout << "No majority element found." << endl;
+        }
 
 
 
