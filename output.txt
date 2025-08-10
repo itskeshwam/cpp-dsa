@@ -1,1 +1,1 @@
-Majority element (Boyer-Moore): 5
+Maximum subarray sum (better): 7

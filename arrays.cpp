@@ -618,12 +618,65 @@ int majority_element_boyer_moore(vector<int> &v) {
         }
     } if (count1 > v.size() / 2) {
         return element; // majority element found
-    }
+        }
     return -1; // if no majority element found
 }
 
-    
 
+
+// maximum subarray sum (kadane's algorithm)
+// Brute Force O(n^3)
+int max_subarray_sum_brute(vector<int> &arr, int n) {
+    int max_sum = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            int current_sum = 0;
+            for (int k = i; k <= j; k++) {
+                current_sum += arr[k];
+            }
+            max_sum = max(max_sum, current_sum);
+        }
+    }
+    return max_sum;
+}
+
+// Better O(n^2)
+int max_subarray_sum_better(vector<int> &arr, int n) {
+    int max_sum = INT_MIN; 
+    for (int i = 0; i < n; i++) {
+        int current_sum = 0;
+        for (int j = i; j < n; j++) {
+            current_sum += arr[j];
+            max_sum = max(max_sum, current_sum);
+        }
+    }
+    return max_sum;
+}
+
+// Optimal O(n) using Kadane's Algorithm
+int max_subarray_sum_kadane(vector<int> &arr) {
+    int n = arr.size();
+    int ansStart = -1, ansEnd = -1;
+    int start = 0;
+
+    int sum = 0; 
+    int max_sum = INT_MIN;
+
+    for (int i = 0; i < n; i++) {
+        if (sum == 0) start = i;
+        sum += arr[i];
+
+        if (sum > max_sum) {
+            max_sum = sum;
+            ansStart = start;
+            ansEnd = i;
+        }
+        if (sum < 0) {
+            sum = 0;
+        }
+    }
+    return max_sum;
+}
 
 
 
@@ -916,12 +969,27 @@ int main() {
 
 
     // optimal using Boyer-Moore Voting Algorithm
-        int majority_boyer_moore = majority_element_boyer_moore(arr);
-        if (majority_boyer_moore != -1) {
-            cout << "Majority element (Boyer-Moore): " << majority_boyer_moore << endl;
-        } else {
-            cout << "No majority element found." << endl;
-        }
+        // int majority_boyer_moore = majority_element_boyer_moore(arr);
+        // if (majority_boyer_moore != -1) {
+        //     cout << "Majority element (Boyer-Moore): " << majority_boyer_moore << endl;
+        // } else {
+        //     cout << "No majority element found." << endl;
+        // }
+
+
+
+// maximum subarray sum 
+// Brute
+    // int max_sum_brute = max_subarray_sum_brute(arr, n);
+    // cout << "Maximum subarray sum (brute): " << max_sum_brute << endl;
+
+    // Better
+    // int max_sum_better = max_subarray_sum_better(arr, n);
+    // cout << "Maximum subarray sum (better): " << max_sum_better << endl;
+
+    // Optimal
+    // int max_sum_kadane = max_subarray_sum_kadane(arr);
+    // cout << "Maximum subarray sum (Kadane's): " << max_sum_kadane << endl;
 
 
 
