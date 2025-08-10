@@ -1,1 +1,1 @@
-Maximum subarray sum (better): 7
+Maximum profit from stock: 5

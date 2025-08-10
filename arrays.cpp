@@ -680,6 +680,22 @@ int max_subarray_sum_kadane(vector<int> &arr) {
 
 
 
+// Best time to buy and sell stock
+int max_profit(vector<int> &a) {
+    int mini = a[0];
+    int maxProfit = 0;
+    for (int i = 1; i < a.size(); i++) {
+        int cost = a[i] - mini;
+        maxProfit = max(maxProfit, cost);
+        mini = min(mini, a[i]);
+    }
+    return maxProfit;
+}
+
+
+
+// rearrange array elements by sign
+
 
 
 
@@ -990,6 +1006,11 @@ int main() {
     // Optimal
     // int max_sum_kadane = max_subarray_sum_kadane(arr);
     // cout << "Maximum subarray sum (Kadane's): " << max_sum_kadane << endl;
+
+
+// Best time to buy and sell stock
+    // int max_profit_value = max_profit(arr);
+    // cout << "Maximum profit from stock: " << max_profit_value << endl;
 
 
 
