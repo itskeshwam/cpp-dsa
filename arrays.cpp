@@ -681,6 +681,19 @@ int max_subarray_sum_kadane(vector<int> &arr) {
 
 
 // Best time to buy and sell stock
+// Brute Force O(n^2)
+int max_profit_brute(vector<int> &a) {
+    int n = a.size();
+    int maxProfit = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            maxProfit = max(maxProfit, a[j] - a[i]);
+        }
+    }
+    return maxProfit;
+}
+
+// Optimal O(n) using a single pass
 int max_profit(vector<int> &a) {
     int mini = a[0];
     int maxProfit = 0;
@@ -694,7 +707,78 @@ int max_profit(vector<int> &a) {
 
 
 
-// rearrange array elements by sign
+// rearrange array elements by sign 
+
+// works for equal number of positive and negative elements
+
+// Brute Force O(2n)
+void rearrange_array_sign_brute(vector<int> &arr) {
+    int n = arr.size();
+    vector<int> positive, negative;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] >= 0) {
+            positive.push_back(arr[i]);
+        } else {
+            negative.push_back(arr[i]);
+        }
+    }
+    for (int i = 0; i < n / 2; i++) {
+        arr[2 * i] = positive[i];
+        arr[2 * i + 1] = negative[i];
+    }
+}
+
+// Better O(n) using two pointers
+vector<int> rearrange_array_sign(vector<int> &arr) {
+    int n = arr.size();
+    vector<int> ans(n, 0);
+    int posIndex = 0, negIndex = 1;
+    for (int i = 0; i < n; i++) {
+        if (arr[i] >= 0) {
+            ans[posIndex] = arr[i];
+            posIndex += 2;
+        } else {
+            ans[negIndex] = arr[i];
+            negIndex += 2;
+        }
+    }
+    return ans;
+}
+
+// For unequal number of positive and negative elements
+vector<int> rearrange_array_sign_unequal(vector<int> &arr) {
+    vector<int> pos, neg;
+    int n = arr.size();
+    for (int i = 0; i < n; i++) {
+        if (arr[i] >= 0) {
+            pos.push_back(arr[i]);
+        } else {
+            neg.push_back(arr[i]);
+        }
+    }
+
+    if (pos.size() >= neg.size()) {
+        for (int i = 0; i < neg.size(); i++) {
+            arr[2 * i] = pos[i];
+            arr[2 * i + 1] = neg[i];
+        }
+        int index = 2 * neg.size();
+        for (int i = neg.size(); i < pos.size(); i++) {
+            arr[index++] = pos[i];
+        }
+    } else {
+        for (int i = 0; i < pos.size(); i++) {
+            arr[2 * i] = pos[i];
+            arr[2 * i + 1] = neg[i];
+        }
+        int index = 2 * pos.size();
+        for (int i = pos.size(); i < neg.size(); i++) {
+            arr[index++] = neg[i];
+        }
+    }
+    return arr;
+}
+
 
 
 
@@ -1012,6 +1096,22 @@ int main() {
     // int max_profit_value = max_profit(arr);
     // cout << "Maximum profit from stock: " << max_profit_value << endl;
 
+
+// rearrange array elements by sign
+    // Brute Force (works for equal number of pos & neg)
+    // rearrange_array_sign_brute(arr);
+    // for (int num : arr) cout << num << " ";
+    // cout << endl;
+
+    // Better Approach (works for equal number of pos & neg)
+    // vector<int> ans = rearrange_array_sign(arr);
+    // for (int num : ans) cout << num << " ";
+    // cout << endl;
+
+    // Unequal case handling
+    // vector<int> ans2 = rearrange_array_sign_unequal(arr);
+    // for (int num : ans2) cout << num << " ";
+    // cout << endl;
 
 
 
