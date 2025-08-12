@@ -781,6 +781,41 @@ vector<int> rearrange_array_sign_unequal(vector<int> &arr) {
 
 
 
+// next permutation in an array 
+// skip brute and just say 1) find all permutations and sort them, 2) linear search for the current permutation and return the next one.... we skip it cuz time comeplexity is O(n! x n) which is not feasible for large n
+
+// better using cpp stl
+void next_permutation(vector<int> &arr) {
+    next_permutation(arr.begin(), arr.end());
+}
+
+// optimal approach using next permutation algorithm
+vector<int> next_permutation_optimized(vector<int> &nums) {
+    int ind = -1;
+    int n = nums.size();
+    for (int i = n - 2; i >= 0; i--) {
+        if (nums[i] < nums[i + 1]) {
+            ind = i;
+            break;
+        }  
+    }
+    if (ind == -1) {
+        reverse(nums.begin(), nums.end());
+        return nums; // return the smallest permutation
+    }
+    for (int i = n - 1; i > ind; i--) {
+        if (nums[i] > nums[ind]) {
+            swap(nums[i], nums[ind]);
+            break;
+        }
+    }
+    reverse(nums.begin() + ind + 1, nums.end());
+    return nums; // return the next permutation
+}
+    
+    
+
+
 
 
 
@@ -1114,6 +1149,18 @@ int main() {
     // cout << endl;
 
 
+// next permutation in an array
+    // stl     
+        // next_permutation(arr);
+        // cout << "Next permutation: ";
+        // for (int num : arr) cout << num << " ";
+        // cout << endl;
+
+    // optimal approach using next permutation algorithm
+        vector<int> next_perm = next_permutation_optimized(arr);
+        cout << "Next permutation (optimized): ";
+        for (int num : next_perm) cout << num << " ";
+        cout << endl;
 
 
 

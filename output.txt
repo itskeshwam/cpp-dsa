@@ -1,1 +1,1 @@
-7 -3 2 -2 4 1778409843 
+Next permutation (optimized): 2 3 0 0 1 4 5 
