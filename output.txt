@@ -1,1 +1,1 @@
-Next permutation (optimized): 2 3 0 0 1 4 5 
+Leaders in the array (optimized): 22 12 3 6 

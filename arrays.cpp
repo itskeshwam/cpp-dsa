@@ -815,6 +815,45 @@ vector<int> next_permutation_optimized(vector<int> &nums) {
     
     
 
+// leaders in an array
+// brute - linear search for every element
+vector<int> leaders_brute(vector<int> &arr) {
+    vector<int> leaders;
+    int n = arr.size();
+    for (int i = 0; i < n; i++) {
+        bool isLeader = true;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] >= arr[i]) {
+                isLeader = false;
+                break;
+            }
+        }
+        if (isLeader) {
+            leaders.push_back(arr[i]);
+        }
+    }
+    return leaders;
+}
+
+
+// optimal using reverse traversal
+vector<int> leaders_optimized(vector<int> &arr) {
+    vector<int> leaders;
+    int n = arr.size();
+    int maxi = INT_MIN; // Initialize to minimum integer value
+    for (int i = n - 1; i >= 0; i--){
+        if (arr[i] > maxi) {
+            leaders.push_back(arr[i]);
+        }
+        maxi = arr[i];
+    } 
+    // sort (leaders.begin(), leaders.end()); // if needed in ascending order
+    reverse(leaders.begin(), leaders.end()); // to maintain the order of leaders as they appear 
+    return leaders;
+}
+
+
+// 
 
 
 
@@ -1157,10 +1196,24 @@ int main() {
         // cout << endl;
 
     // optimal approach using next permutation algorithm
-        vector<int> next_perm = next_permutation_optimized(arr);
-        cout << "Next permutation (optimized): ";
-        for (int num : next_perm) cout << num << " ";
-        cout << endl;
+        // vector<int> next_perm = next_permutation_optimized(arr);
+        // cout << "Next permutation (optimized): ";
+        // for (int num : next_perm) cout << num << " ";
+        // cout << endl;
+
+
+// leaders in an array 
+    // brute 
+        // vector<int> leaders = leaders_brute(arr);
+        // cout << "Leaders in the array (brute): ";
+        // for (int leader : leaders) 
+        // {cout << leader << " " << endl;}
+    
+    // optimal approach
+        // vector<int> leaders_opt = leaders_optimized(arr);
+        cout << "Leaders in the array (optimized): ";
+        for (int leader : leaders_optimized(arr)) 
+        {cout << leader << " ";}
 
 
 
