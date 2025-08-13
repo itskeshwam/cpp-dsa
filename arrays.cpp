@@ -853,7 +853,68 @@ vector<int> leaders_optimized(vector<int> &arr) {
 }
 
 
-// 
+// longest consecutive sequence in an array
+// brute 
+int longest_consecutive_sequence_brute(vector<int> &arr) {
+    int longest = 0;
+    int n = arr.size();
+    for (int i = 0; i < n; i++) {
+        int x = arr[i];
+        int count = 1;
+        while (find(arr.begin(), arr.end(), x + 1) != arr.end()) {
+            count = count + 1;
+            x= x + 1;
+        }
+        longest = max(longest, count);
+    }
+    return longest;
+}
+
+
+// better by sorting the array
+int longest_consecutive_sequence_sorted(vector<int> &arr) {
+    if (arr.empty()) return 0;
+    sort(arr.begin(), arr.end());
+    int n = arr.size();
+    int lastSmaller = INT_MIN;
+    int cnt = 0;
+    int longest = 1; 
+    for (int i = 0; i < n; i++) {
+        if (arr[i] - 1 == lastSmaller) {
+            cnt = cnt + 1; 
+            lastSmaller = arr[i];
+        } else if (lastSmaller != arr[i]) { 
+            cnt = 1; // reset count for a new sequence
+            lastSmaller = arr[i];
+        }
+        longest = max(longest, cnt);
+    }
+    return longest;
+}
+
+// optimal using set 
+int longest_consecutive_sequence_set(vector<int> &arr) {
+    int n = arr.size();
+    if (n == 0) return 0;
+    int longest = 1;
+    unordered_set<int> st;{
+    for (int i = 0; i < n; i++) {
+        st.insert(arr[i]); // insert all elements into the set
+    }
+    for (auto it : st) {
+        if (st.find(it - 1) == st.end()) { // check if it is the start of a sequence
+            int cnt = 1;
+            int x = it;
+            while (st.find(x + 1) != st.end()) { // check for consecutive elements
+                cnt++;
+                x++;
+            }
+            longest = max(longest, cnt); // update longest sequence
+        }
+        }
+    }
+    return longest;
+}
 
 
 
@@ -1210,13 +1271,23 @@ int main() {
         // {cout << leader << " " << endl;}
     
     // optimal approach
-        // vector<int> leaders_opt = leaders_optimized(arr);
-        cout << "Leaders in the array (optimized): ";
-        for (int leader : leaders_optimized(arr)) 
-        {cout << leader << " ";}
+        // cout << "Leaders in the array (optimized): ";
+        // for (int leader : leaders_optimized(arr)) 
+        // {cout << leader << " ";}
 
 
+// longest consecutive sequence
+    // brute 
+        // int longest_sequence = longest_consecutive_sequence_brute(arr);
+        // cout << "Longest consecutive sequence (brute): " << longest_sequence << endl;
 
+    // better
+        // int longest_sequence_sorted = longest_consecutive_sequence_sorted(arr);
+        // cout << "Longest consecutive sequence (sorted): " << longest_sequence_sorted << endl;
+
+    // optimal using set
+        int longest_sequence_set = longest_consecutive_sequence_set(arr);
+        cout << "Longest consecutive sequence (optimal): " << longest_sequence_set << endl;
 
 
 
