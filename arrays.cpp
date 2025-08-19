@@ -161,7 +161,16 @@ vector<int> moveZerosOptimized(vector<int> &arr, int n) {
     } return arr;
 }
 
-
+void moveZerosOptimized2(int* nums , int numsSize){
+    int j = 0; // pointer for non-zero elements
+    for (int i = 0; i < numsSize; i++) {
+        if (nums[i] != 0) {
+            swap(nums[i], nums[j]);
+            j++;
+        }
+    }
+    // No need to fill remaining elements with zero, as they will be at the end
+}
 
 // linear search 
 int linear_search(vector<int> &arr, int n, int key) {
@@ -917,6 +926,55 @@ int longest_consecutive_sequence_set(vector<int> &arr) {
 }
 
 
+// set matrix to zeroes
+// brute force
+
+void markRow(vector<vector<int>> &matrix, int n, int m, int i) {
+    // set all non-zero elements as -1 in the row i:
+    for (int j = 0; j < m; j++) {
+        if (matrix[i][j] != 0) {
+            matrix[i][j] = -1;
+        }
+    }
+}
+
+
+void markCol(vector<vector<int>> &matrix, int n, int m, int j) {
+    // set all non-zero elements as -1 in the col j:
+    for (int i = 0; i < n; i++) {
+        if (matrix[i][j] != 0) {
+            matrix[i][j] = -1;
+        }
+    }
+}
+
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+    // Set -1 for rows and cols
+    // that contains 0. Don't mark any 0 as -1:
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (matrix[i][j] == 0) {
+                markRow(matrix, n, m, i);
+                markCol(matrix, n, m, j);
+            }
+        }
+    }
+
+    // Finally, mark all -1 as 0:
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (matrix[i][j] == -1) {
+                matrix[i][j] = 0;
+            }
+        }
+    }
+
+    return matrix;
+}
+    
+
+
 
 
 
@@ -1286,10 +1344,21 @@ int main() {
         // cout << "Longest consecutive sequence (sorted): " << longest_sequence_sorted << endl;
 
     // optimal using set
-        int longest_sequence_set = longest_consecutive_sequence_set(arr);
-        cout << "Longest consecutive sequence (optimal): " << longest_sequence_set << endl;
+        // int longest_sequence_set = longest_consecutive_sequence_set(arr);
+        // cout << "Longest consecutive sequence (optimal): " << longest_sequence_set << endl;
 
 
+// set matrix to zeroes
+    // brute force
+        vector<vector<int>> matrix = {{1, 2, 0}, {4, 5, 6}, {7, 0, 9}};
+        int n = matrix.size();
+        int m = matrix[0].size();
+        vector<vector<int>> zeroed_matrix = zeroMatrix(matrix, n, m);
+        cout << "Matrix after setting rows and columns to zeroes: " << endl;
+        for (const auto &row : zeroed_matrix) {
+            for (int num : row) cout << num << " ";
+            cout << endl;
+        }
 
 
 
