@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// --- All your original functions are here ---
+
 
 // print name 5 times 
 void printName(int i, int n)
@@ -203,7 +203,7 @@ void run_printF_subsequences() {
 }
 
 
-// --- The single, common main function ---
+
 int main(){
     // Uncomment the function you want to run
 
@@ -218,7 +218,7 @@ int main(){
     // run_palindrome_recursive();
     // run_palindrome_iterative();
     // run_fib();
-    run_printF_subsequences(); // The last one from your file is uncommented by default.
+    run_printF_subsequences(); 
     
     return 0;
 }
