@@ -1,7 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <algorithm> // Required for std::min
-
+#include <bits/stdc++.h>
 using namespace std;
 
 // 1. Square Star Pattern
