@@ -1,6 +1,5 @@
-Matrix after setting zeroes (brute):
-0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 
-0 0 0 0 0 0 0 
+Matrix after setting zeroes:
+1 0 0 5 
+0 0 0 0 
+0 0 0 0 
+0 0 0 0 
