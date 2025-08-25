@@ -1234,6 +1234,35 @@ vector<vector<int>> zeroed_matrix_better(vector<vector<int>> &matrix, int n, int
     }
 
 
+// rotate matrix by 90 degrees / rotate image
+// brute force using extra matrix
+vector<vector<int>> rotate_matrix_brute(vector<vector<int>> &matrix)
+{
+    int n = matrix.size();
+    vector<vector<int>> rotated(n, vector<int>(n, 0));
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            rotated[j][n - i - 1] = matrix[i][j];
+        }
+    }
+    return rotated;
+}
+
+
+// optimal approach -> transpose + reverse each row
+void rotate(vector<vector<int>> &matrix){
+    int n = matrix.size();
+    for (int i = 0; i < n-1; i++){
+        for (int j = i+1; j < n; j++){
+            swap(matrix[i][j], matrix[j][i]);
+        }
+    }
+    for (int i = 0; i < n; i++){
+        reverse(matrix[i].begin(), matrix[i].end());
+    } 
+}
 
 
 
@@ -1562,16 +1591,16 @@ int main()
     // cout << "Longest sequence (optimal): " << longest_consecutive_sequence_set(arr) << endl;
 
     // ==== Set Matrix to Zeroes (CURRENTLY ACTIVE) ====
-    int rows, cols;
-    cin >> rows >> cols;
-    vector<vector<int>> matrix(rows, vector<int>(cols));
-    for (int i = 0; i < rows; i++)
-    {
-        for (int j = 0; j < cols; j++)
-        {
-            cin >> matrix[i][j];
-        }
-    }
+    // int rows, cols;
+    // cin >> rows >> cols;
+    // vector<vector<int>> matrix(rows, vector<int>(cols));
+    // for (int i = 0; i < rows; i++)
+    // {
+    //     for (int j = 0; j < cols; j++)
+    //     {
+    //         cin >> matrix[i][j];
+    //     }
+    // }
 
     // vector<vector<int>> zeroed_matrix = zeroMatrix(matrix, rows, cols);
     // cout << "Matrix after setting zeroes:" << endl;
@@ -1611,7 +1640,42 @@ int main()
 
 
 
+    // ==== Rotate Matrix by 90 Degrees ====
+    // brute
+        // int n;
+        // cin >> n;
+        // vector<vector<int>> matrix(n, vector<int>(n));
+        // for (int i = 0; i < n; i++){
+        //     for (int j = 0; j < n; j++){
+        //         cin >> matrix[i][j];
+        //     }
+        // }
+        // vector<vector<int>> rotated = rotate_matrix_brute(matrix);
+        // cout << "Rotated Matrix (brute):" << endl;
+        // for (const auto &row : rotated){
+        //     for (int val : row){
+        //         cout << val << " ";
+        //     }
+        //     cout << endl;
+        // }
 
+    // optimal -> transpose + reverse
+        int n;
+        cin >> n;
+        vector<vector<int>> matrix(n, vector<int>(n));
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < n; j++){
+                cin >> matrix[i][j];
+            }
+        }
+        rotate(matrix);
+        cout << "Rotated Matrix (optimal):" << endl;
+        for (const auto &row : matrix){
+            for (int val : row){
+                cout << val << " ";
+            }
+            cout << endl;
+        }
 
 
 
