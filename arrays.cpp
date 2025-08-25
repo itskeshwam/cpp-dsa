@@ -1174,6 +1174,99 @@ vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int rows, int cols)
 }
 
 
+// better 
+vector<vector<int>> zeroed_matrix_better(vector<vector<int>> &matrix, int n, int m){
+        int row[n] = {0};
+        int col[m] = {0};
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(matrix[i][j] == 0){
+                    row[i] = 1;
+                    col[j] = 1;
+                }
+            }
+        }
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(row[i] || col[j] ){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        return matrix;
+    }
+
+    // optimal
+    vector<vector<int>> zeroed_matrix_optimal(vector<vector<int>> &matrix, int n, int m){
+        int col0 = 1; // to track if first column needs to be zeroed
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(matrix[i][j] == 0){
+                    matrix[i][0] = 0; // mark the first cell of the row
+                    if(j != 0) // to avoid overwriting col0 for first column
+                        matrix[0][j] = 0; // mark the first cell of the column
+                    else
+                        col0 = 0; // first column needs to be zeroed
+                }
+            }
+        }
+        // traverse the matrix in reverse order to avoid overwriting markers
+        for(int i=1; i<n; i++){
+            for(int j=1; j<m; j++){
+                if(matrix[i][j] != 0){
+                    if(matrix[i][0] == 0 || matrix[0][j] == 0){
+                        matrix[i][j] = 0;
+                    }
+                }
+            }
+        }
+        if (matrix[0][0] == 0) {
+            for(int j=0; j<m; j++){
+                matrix[0][j] = 0; // zero the first row
+            }
+        }
+        if (col0 == 0) {
+            for(int i=0; i<n; i++){
+                matrix[i][0] = 0; // zero the first column
+            }
+        }
+        return matrix;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int main()
 {
     // ==================================================================
@@ -1480,21 +1573,41 @@ int main()
         }
     }
 
-    // This is your BRUTE FORCE method, which I have fixed by adding the 'matrix_copy'
-    vector<vector<int>> zeroed_matrix = zeroMatrix(matrix, rows, cols);
+    // vector<vector<int>> zeroed_matrix = zeroMatrix(matrix, rows, cols);
+    // cout << "Matrix after setting zeroes:" << endl;
+    // for (const auto &row : zeroed_matrix)
+    // {
+    //     for (int val : row)
+    //     {
+    //         cout << val << " ";
+    //     }
+    //     cout << endl;
+    // }
 
-    // This is your BETTER method from the file (commented out)
-    // vector<vector<int>> zeroed_matrix = zeroMatrix_better(matrix, rows, cols);
+    // better 
+    // vector<vector<int>> zeroed_matrix = zeroed_matrix_better(matrix, rows, cols);
+    // cout << "Matrix after setting zeroes (better):" << endl;
+    // for (const auto &row : zeroed_matrix)
+    // {
+    //     for (int val : row)
+    //     {
+    //         cout << val << " ";
+    //     }
+    //     cout << endl;
+    // }
 
-    cout << "Matrix after setting zeroes:" << endl;
-    for (const auto &row : zeroed_matrix)
-    {
-        for (int val : row)
-        {
-            cout << val << " ";
-        }
-        cout << endl;
-    }
+
+    // optimal 
+    // vector<vector<int>> zeroed_matrix = zeroed_matrix_optimal(matrix, rows, cols);
+    // cout << "Matrix after setting zeroes (optimal):" << endl;
+    // for (const auto &row : zeroed_matrix)
+    // {
+    //     for (int val : row)
+    //     {
+    //         cout << val << " ";
+    //     }
+    //     cout << endl;
+    // }
 
 
 

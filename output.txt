@@ -1,5 +1,4 @@
-Matrix after setting zeroes:
-1 0 0 5 
-0 0 0 0 
-0 0 0 0 
-0 0 0 0 
+Matrix after setting zeroes (optimal):
+0 0 0 
+0 0 2 
+0 0 0 
